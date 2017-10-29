@@ -137,9 +137,8 @@ public class StoryCompiler extends Compiler {
 		if (stack[0].tagname == 'string') {
 			trimStyle = TextStmt.TRIMSTYLE_NONE;
 		} else {
-			trimStyle  = TextStmt.TRIM_SQUEEZE | TextStmt.TRIM_UNINDENT;
+			trimStyle  = TextStmt.TRIM_SQUEEZE | TextStmt.TRIM_UNINDENT | TextStmt.TRIM_NT_TN;
 			var ptn:XMLList = x.parent().text();
-			if (x==ptn[0]) trimStyle |= TextStmt.TRIM_LEFT;
 		}
 		return new TextStmt(s, trimStyle);
 	}

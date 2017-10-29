@@ -32,7 +32,8 @@ public class TextStmt extends Statement {
 							 .replace(/[ \t]*\n$/,'');
 		}
 		if ((trimStyle & TRIM_UNINDENT) != 0) {
-			content = content.replace(/\n[ \t]+/g,'\n');
+			content = content.replace(/^[ \t]+/g,'')
+							 .replace(/\n[ \t]+/g,'\n');
 		}
 		if ((trimStyle & TRIM_SQUEEZE) != 0) {
 			content = content.replace(/\n\n/g,'\\n\\n')

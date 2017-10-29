@@ -10,6 +10,7 @@ package classes
 	// BREAKING ALL THE RULES.
 import classes.GlobalFlags.kCOUNTERS;
 import classes.GlobalFlags.kFLAGS;
+import classes.Scenes.API.GroupEncounter;
 import classes.internals.CountersStorage;
 import classes.internals.RootCounters;
 import classes.display.DebugInfo;
@@ -22,6 +23,7 @@ import coc.xxc.Story;
 
 import coc.xxc.StoryCompiler;
 import coc.xxc.StoryContext;
+import coc.xxc.stmts.ZoneStmt;
 
 import flash.display.DisplayObjectContainer;
 
@@ -706,6 +708,21 @@ the text from being too boring.
 
 		private function loadStory():void {
 			compiler.includeFile("coc.xml", true);
+		}
+		public function createStory(parentPath:String,name:String):Story {
+			var parent:Story = rootStory.locate(parentPath);
+			if (parent == null) throw new Error("Cannot locate story '"+parentPath+"'");
+			return new Story("story",parent,name,false);
+		}
+		public function createStoryLib(parentPath:String,name:String):Story {
+			var parent:Story = rootStory.locate(parentPath);
+			if (parent == null) throw new Error("Cannot locate story '"+parentPath+"'");
+			return new Story("lib",parent,name,true);
+		}
+		public function createStoryZone(encounters:GroupEncounter,parentPath:String,rename:String=""):ZoneStmt {
+			var parent:Story = rootStory.locate(parentPath);
+			if (parent == null) throw new Error("Cannot locate story '"+parentPath+"'");
+			return ZoneStmt.wrap(encounters,parent,rename);
 		}
 
 		public function run():void

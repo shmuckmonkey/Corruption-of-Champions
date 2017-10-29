@@ -146,6 +146,11 @@ public class SpriteDb {
 	public static function get s_drider(): Class {
 		return is8bit ? s_drider_8bit : s_drider_16bit;
 	}
+	[Embed(source = "../../../res/sprites/dullahan.png")]
+	public static var dullsprite16:Class;
+	public static function get dullsprite(): Class{
+		return is8bit ? null : dullsprite16;
+	}
 	[Embed(source="../../../res/sprites/easter bunneh.png")]
 	public static var s_easter_bunneh_16bit:Class;
 	[Embed(source="../../../res/sprites8bit/bunnygirl-old.png")]

@@ -32,7 +32,7 @@ package classes.Scenes.Areas
 		public var erlkingScene:ErlKingScene = new ErlKingScene();
 		public var alrauneScene:AlrauneScene = new AlrauneScene();
 		public var darkelfScene:DarkElfScene = new DarkElfScene();
-		// public var dullahanScene:DullahanScene = new DullahanScene(); // [INTERMOD:8chan]
+		public var dullahanScene:DullahanScene;
 
 		public function Forest() {
 			onGameInit(init);
@@ -82,7 +82,13 @@ package classes.Scenes.Areas
 		private function init():void {
 			const game:CoC     = getGame();
 			const fn:FnHelpers = Encounters.fn;
-			_forestEncounter = Encounters.group("forest", {
+			_forestEncounter = new GroupEncounter("forest",[]);
+			// what we do here: create a Story (ZoneStmt) and register it in game.rootStory
+			// so it will be accessible from external files
+			forestStory = getGame().createStoryZone(_forestEncounter,"/").bind(game.context);
+			dullahanScene = new DullahanScene();
+			
+			_forestEncounter.add({
 						//General Golems, Goblin and Imp Encounters
 						name: "common",
 						call: game.exploration.genericGolGobImpEncounters
@@ -259,10 +265,7 @@ package classes.Scenes.Areas
 					return flags[kFLAGS.SOUL_SENSE_KITSUNE_MANSION] < 3;
 				},
 				call: kitsuneScene.enterTheTrickster
-			},/*{ // [INTERMOD:8chan]
-			 name: "dullahan",
-			 call: dullahanScene
-			 }, */{
+			}, dullahanScene, {
 				name: "akbal",
 				call: akbalScene.supahAkabalEdition
 			}, {
@@ -344,9 +347,6 @@ package classes.Scenes.Areas
 				call  : deepwoodsWalkFn,
 				chance: 0.01
 			});
-			// what we do here: create a Story (ZoneStmt) and register it in game.rootStory
-			// so it will be accessible from external files
-			forestStory = ZoneStmt.wrap(_forestEncounter,game.rootStory).bind(game.context);
 			deepwoodsStory = ZoneStmt.wrap(_deepwoodsEncounter,game.rootStory).bind(game.context);
 		}
 		public function exploreDeepwoods():void {

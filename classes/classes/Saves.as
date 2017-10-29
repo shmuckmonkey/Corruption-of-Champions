@@ -1184,11 +1184,13 @@ public function saveGameObject(slot:String, isFile:Boolean):void
 		saveFile.data.controls = getGame().inputManager.SaveBindsToObj();
 		
 		// TODO @Oxdeception recheck
-		saveFile.data.world = [];
-		saveFile.data.world.x = [];
+		saveFile.data.world = {};
+		saveFile.data.world.x = {};
 		for each(var npc:XXCNPC in XXCNPC.SavedNPCs){
 			npc.save(saveFile.data.world.x);
 		}
+		saveFile.data.world.hgg = {};
+		getGame().forest.dullahanScene.save(saveFile.data.world.hgg);
 	}
 	catch (error:Error)
 	{
@@ -2357,14 +2359,16 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 		
 		// TODO @Oxdeception recheck
 		XXCNPC.unloadSavedNPCs();
-		if(saveFile.data.world == undefined){saveFile.data.world = [];}
-		if(saveFile.data.world.x == undefined){saveFile.data.world.x = [];}
+		if(saveFile.data.world == undefined){saveFile.data.world = {};}
+		if(saveFile.data.world.x == undefined){saveFile.data.world.x = {};}
 		for each(var savedNPC:* in saveFile.data.world.x){
 			if(savedNPC.myClass != undefined){
                 var ref:Class = getDefinitionByName(savedNPC.myClass) as Class;
                 ref["instance"].load(saveFile.data.world.x);
 			}
 		}
+		if(saveFile.data.world.hgg == undefined){saveFile.data.world.hgg = {};}
+		getGame().forest.dullahanScene.load(saveFile.data.world.hgg);
 		
 		doNext(playerMenu);
 	}

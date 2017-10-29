@@ -2587,6 +2587,9 @@ import classes.internals.Utils;
 				return true;
 			return false;
 		}
+		public function isClothedLower():Boolean {
+			return armorName != "gear" && (armorName != "lethicite armor" && lowerGarmentName == "nothing") && !isTaur();
+		}
 
 		//Natural Armor (need at least to partialy covering whole body)
 		public function haveNaturalArmor():Boolean

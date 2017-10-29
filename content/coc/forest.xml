@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extend-story name="/" xmlns="xxc-story">
+	<include path="forest/dullahan.xml"/>
 	<extend-zone name="forest">
 		<lib name = "strings">
 			<text name="trip">

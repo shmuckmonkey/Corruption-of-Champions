@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extend-story name="/forest/dullahan" xmlns="xxc-story">
+    <lib name="combat">
+        <text name="phase2">
+            You deal a final strike to the knight. It charges past you, clearly unbalanced and in pain from its wounds.<i>"You cannot defeat me! I am the Harbinger of <b>Death!</b>"</i> it screams, looking at you, scythe held aloft.
+
+            It was apparently too busy gloating to pay attention to where it was going, however. When the knight turns its head, it meets a thick tree branch. You gasp in horror as the knight's head crashes into the branch, cleanly detaching it from its shoulders! The horse and the knight's body continue galloping forward into the darkness, while the head falls to the ground.
+
+            You sheathe your weapons and prepare to leave, still a bit shocked. <i>"Hey! We're not done yet!"</i> A much less horrifying, female voice yells. You slowly turn around, hearing footsteps approaching the loose head. You nearly faint when you see the knight's headless body - now mostly uncloaked - lifting its own head and placing it on its shoulders!
+
+            You're speechless, but you take the opportunity to properly discern your resilient opponent. It's a woman, judging by the breasts, voice and long white, flowing hair. Her skin is pale blue, and her eyes are curiously black, with golden pupils.<i>"You're going to pay for knocking me off my horse like that!"</i>, she says, unsheathing a cavalry saber and changing into a fencing position. <b>You're facing a Dullahan!</b>
+        </text>
+        <lib name="moves">
+
+            <lib name="embrace">
+                <text name="hit">
+                    <!--Diva suddenly dives and closes her wings and arms on you, locking you in an embrace!
+                    <if test="silly()">Bad touch, bad touch!</if>-->
+                </text>
+                <text name="miss">
+                    <!--Diva suddenly dives and attempt to closes her wings and arms on you but you're faster than her and swiftly evade the grapple.-->
+                </text>
+            </lib>
+        </lib>
+        <text name="battleDescript2">
+            Before you stands a female knight. She looks mostly human, aside from her skin, which is pale blue, and eyes, which are black, with golden pupils. Her neat hair is very long, reaching up to her thighs. She wears what amounts to an armored corset; her breasts are barely covered by tight leather. While her forearm, abdomen and calves are covered in black steel plates, she's wearing thigh-highs and a plain white skirt that barely covers her legs. Over her armor, she wears a needlessly long cloak that wraps around her neck like a scarf. She has a cold but determined look to her, and her stance shows she has fencing experience.
+        </text>
+    </lib>
+    <lib name="scenes">
+        <lib name="intro">
+            <text name="first">
+                While walking around the forest, you hear the sound of hooves galloping against the earth.
+
+                You walk cautiously and ready your [weapon] for any attackers, but shortly thereafter, the sounds stop.
+
+                You hear the rustling of leaves behind you and turn around, only to be surprised by the sight of a massive black horse, mounted by a cloaked knight!
+
+                <i>"Interloper!"</i> says the knight, with a horrifyingly demonic voice.<i>" You are not welcome in these woods! Prepare to face the might of the..."</i>
+
+                The pause is so long you can't help but wonder if the knight is making this up as it goes.
+
+                <i>"HARBINGER OF DEATH!"</i>The knight lifts its massive scythe for dramatic impact. It notices it wasn't particularly effective, and scoffs. It grabs the reigns of its demonic horse and gallops away from you. Just as you think it decided to leave you alone, it turns around and begins charging at you! <b>You are fighting a cloaked knight!</b>
+            </text>
+            <text name="rude">
+                While walking around the forest, you hear familiar sound of hooves galloping against the earth.
+
+                You walk cautiously and ready your [weapon] for any attackers, but shortly thereafter, the sounds stop.
+
+                You hear the rustling of leaves behind you and turn around, only to be surprised by the sight of a massive black horse, mounted by a cloaked knight! It's the Dullahan! This time she doesn't bother with introductions or threats, and charges straight at you!
+            </text>
+            <text name="second">
+                Walking in the forest, you hear the familiar sound of thundering hooves across the landscape. You turn around, and sure enough, the Dullahan appears out of thin air, attempting to spook you again.
+
+                <i>"Interlo-"</i> the dullahan stops when she sees who she's talking to. She gets down from her horse and approaches you.<i>" Nice to see you, [name]. I'm guessing you wouldn't be roaming around in the woods at night if you didn't want to see me."</i>
+
+                <if test="$scene.timesWonSpar lt 3">
+                    She's looking a lot more receptive to talking now. She sits on a nearby rock, crosses her legs and lays back on her arms, waiting for you to say something.
+                </if>
+            </text>
+        </lib>
+        <lib name="quest">
+            <text name="offer">
+                <i>"Thanks for coming, [name]. I’ve made a decision. We’ve met and you have beaten me enough times that I believe you have a chance of setting this right.
+
+                    As I’ve told you, I used to be a housecarl. I worked in a manor nearby, protecting its lord. He was just a regular, uncaring lord in the beginning, but, after a while, he changed. For the worse. He did unspeakable things to people, [name]. I fled, because I couldn’t beat him.
+                    I expected him to just die of old age, but I still feel his evil affecting this land, affecting me. He probably turned undead, to continue performing his unholy rituals through eternity.
+                    [name], please, go to the manor, cleanse this evil from the land. I understand that the demons are your priority, but if left unchecked, this… this may be worse than any legion of demons.</i>
+
+                That's certainly sudden, but looking at her face, you can tell that she's being genuine about her anxiety over this situation. Do you agree to help her now?
+            </text>
+            <text name="accept">
+                You think over the question a little, and accept her request. She opens a weak smile, happy, but still unsure if she's made the right decision.
+
+                <i>"Thank you, [name]. Here, let me tell you how to find the manor.</i>
+            </text>
+            <text name="reject">
+                You tell her you're just not ready for such a quest right now. She looks down, disappointed, but soon makes a weak smile and looks at you again.
+
+                <i>"I understand, [name]. This is not something to be taken lightly. I'll be here if you ever change your mind."</i>
+            </text>
+            <text name="completed">
+                You tell her you've gone into the manor, and you have slain the necromancer after a difficult fight. She loses her breath and widens her eyes in surprise. You think you might even have seen a tear well up in her eyes.
+
+                <i>"It's hard to believe. For so many years, I've lived under his shadow. As a housecarl, as a slave, as a runaway. And now it's over. I don't know what to say. Just</i>" - She rubs one of her eyes quickly.
+
+                <i>"I don't think I'm free. I've still done horrible things, in life and unlife, but I have no words to express how thankful I am that you've taken my burden and made it right. I, well-"</i>
+
+                She jumps at you and hugs you tight. You're surprised, but you decide to hug her as well.
+
+                You two stand like that for a few moments, silent. The manor is still cursed, the innocents can't be brought back. But you've given her a glimmer of hope, and that is never without worth.
+
+
+            </text>
+            <text name="gift">
+                She breaks the hug, smiling weakly. <i>"I can't let you go with just a hug. I have a more appropriate reward."</i> She grabs her massive scythe and hands it to you.
+
+                <i>"This was the symbol of his grasp over me. Now that he's gone, I don't need it anymore. It's a viciously good weapon, [name]. I think you can make good use of this."</i>
+            </text>
+            <text name="nogift">
+                You tell her you don't need the scythe after all. <i>"Oh- I see. Well, the offer stands. If you change your mind, you can just visit me and grab it at any time!"</i>
+            </text>
+        </lib>
+        <lib name="talk">
+            <text name="skill-intro">
+                You ask her where she learned her rather unique fighting stance.
+
+                <i>"Ah, I thought you'd notice that after our duels. It was taught to me when I was a little girl, back when humans were common in this land. As you can tell, I'm not exactly the strongest knight around, so I do my best to be agile. Make my dodges and blocks be as close and as fast as possible, and counter while the enemy is too committed to defend."</i>
+
+                You nod.
+
+                Silence.
+
+                <i>"You want me to teach you my technique, right?"</i> It's about damn time. You say yes. <i>"Well... you did help me get some of the rust off, since there's nobody around to practice with."</i>
+            </text>
+            <text name="skill-tooslow">
+
+                <i>"But you're just... how do I put this? <b>Slow</b>. You'd be better off with a standard stance, dodging earlier and finding gaps somewhere else. Otherwise you'll just end up being cleaved before you can do anything. Work a bit on your speed and I'll gladly teach you my stance.</i>
+
+                Well, you can't force her to teach you anything. Your pride is a bit hurt, but you have something to work towards now.
+            </text>
+            <text name="skill-teach">
+
+
+                <i>"That can probably work! I noticed you're pretty damn fast yourself. I think you'll make good use of this stance. Honestly, I'm glad I have the chance to teach this to someone. It's pretty much a dead art right now.</i>She gets up, unsheathes her saber, and beckons you to a duel.
+
+                You spend the next two hours learning from her, as best as she's able to teach. You almost get sliced a few times, but you quickly learn how to dodge at the very last second with the most minor of movements, and strike with lightning speed before the enemy can see what happened.
+
+                You're exhausted, but excited over what you've learned. The dullahan is the happiest you've ever seen her.<i>"You learn quickly! It's been so long since I was taught this, I'm surprised I still remember the basics. Hah, I feel so alive!</i>
+
+                You wonder just how she's able to have this stamina when the two of you just spent two hours in harsh training.<i>"I could go for another duel right now! Shame you look... dead, though. Come back here when you're rested and we'll see if I'm a good teacher."</i>
+
+                Rest sounds like a great idea now. You say your goodbyes to the excited undead girl and head back to camp.
+
+                <b>Perk Gained - Counter Stance!</b>
+            </text>
+
+            <text name="spooks">
+                You ask her why does she keep attempting to spook everyone she sees.
+
+                <i>"Well, why not? It's a lot of fun! I have this sort of... itch, you know? When I see a poor sod walking around in the forest, I just have to remind him of his mortality, throw his mind into utter madness, bury into his soul that all mortals are but moths, doomed to eternal damnation..."</i>Her normally lithe and toned body begins to morph into a formless spectre, as her voice shifts into a much more damning tone. It's quite unnerving. She notices it, however, and stops.
+
+                <i>"Yeah, it's great. Haven't met a goblin or imp I couldn't scare off, but I'm guessing someone with a stronger mind is a bit tougher to crack, like you. I'll get it eventually, though.</i>
+
+                You're not sure you enjoy the prospect of having your mind cracked, but she seems innocent enough.
+            </text>
+
+            <text name="story">
+                You ask about her story, and promise to share yours as well. She looks away for a second, thinking deeply.
+
+                <i>"I'm... not sure if I should. You start; I need to build this story from the ground up."</i>
+
+                You tell her how you were chosen to enter this realm by your village, as a noble hero.
+                <if test="flags[kFLAGS.FACTORY_OMNIBUS_DEFEATED] == 1">
+                    You then tell her about your discovery that maybe your village used you as a sacrifice to the demons.
+                </if>
+                You tell her about some of the most noteworthy fights you've been in, as well as some of the people you've met in your travels
+                <switch value="model.time.days">
+                    <case gte="90"> in this long, months-long adventure.</case>
+                    <case gte="30"> in this month-long adventure.</case>
+                    <default> in this rather recent adventure.</default>
+                </switch>
+
+                She looks at you, a bit more sure of how to tell her story.<i>"Huh, interesting stuff, unique, for sure. Your life changed a lot, huh? Do you miss your old life? You know, just going through a normal routine in Ingnam, without a care in the world, no fighting for your life every day, no looming threat in the horizon?</i>
+
+                That takes you by surprise. You're not sure you ever stopped to think about it yourself.
+            </text>
+            <text name="story2">
+                <if test="$miss">
+
+
+                    You breathe deeply and answer that, as a matter of fact, you do. You miss the simple life of Ingnam. Mareth isn't all bad, but you dream of a quiet, uneventful and normal life.
+
+                    She nods and smiles shyly. <i>"I understand. It took me a while to accept my new... life. I just hope you find something in this new world that you think is worth living for. I probably miss your family, your old friends, and all that. But it may hurt too much to remind yourself of them all the time.</i>
+                    <else>
+
+
+                        You raise your brow and answer that, as a matter of fact, you don't. You appreciate this feeling of wonder, these discoveries, these new friends and foes. You feel like you've lived more in this short stay in Mareth than all the years you've spent in Ingnam.
+
+                        She nods and smiles shyly. <i>"That's the spirit. Sometimes it's hard to control where your life leads you, but there's almost always something worth living for. I did my best to forget about my old life and decided to do something with the new me. It may not be very productive, but it sure as hell is fun."</i>
+                    </else>
+                </if>
+
+                She breathes deeply. <i>"My story is a bit similar to yours. I also had a simple life, just a housecarl serving in a manor in this forest. I was twenty four years old when I was killed. Then I became... this. It took me a while to accept my new life. I must be about a hundred years old now, but it's hard to know for sure when you don't exactly age. That's really about it, my story is deceptively simple."</i>
+
+                You narrow your eyes, and tell her she hasn't told you how exactly she died, and why she became undead in the first place. Hell, she didn't even tell you her name!
+
+                <i>That's the part about forgetting my old life. I don't want to talk about it, sorry. I'm a Dullahan, not a young housecarl. You're the Champion of Ingnam, not a random peasant of Ingnam."</i>
+
+                You nod in understanding. Seems like you just won't pry this information out of her.
+            </text>
+
+            <text name="curse">
+                You tell her you know of her curse, from reading the Necromancer's journal. She frowns lightly at that. <i>"So you know of the things I've done. The people I've killed, even before I've became undead."</i>
+
+                She crosses her arms, evidently sad, but determined. <i>"I guess at this point, the only thing I can ask is what you intend to do with that knowledge. Are you fine with it, or do you feel like you weren't finished by just eliminating the Necromancer?"</i>
+
+                Her look is definitely of apprehension.
+            </text>
+            <text name="curse-cure">
+                You tell her to relax. You only want to know if she wants help finding some type of cure for her condition. The woman breathes deeply, relieved that you didn't attack her.
+
+                <i>"That's kind of you, [name], but-"</i> the Dullahan briefly detaches her own head, then puts it back, to make a point. <i>"The curse is the only thing keeping me "alive". Even if someone in Mareth has deep knowledge on the breaking of curses or some self proclaimed god could bless me, it would just end up with me dead. Truly dead, the way that I should have been decades ago.
+
+                And despite everything that happened, I enjoy living. There have been sad moments, sure, but I have an infinite amount of time to meet great people, discover new lands, play pranks on random creatures. I don't want release."</i>
+
+                She puts one hand on your shoulder. <i>"You can't fix everything, [name]."</i>
+
+                She smiles at you, and you smile back, a bit disappointed. You'll just have to get used to this fact.
+            </text>
+            <text name="curse-justice">
+                You look down for a moment, and then stare at her with dangerous intent. You tell her that she needs to be removed from this land, despite her seemingly innocent behavior. She has killed too many innocents to just get away without punishment! You prepare yourself for combat.
+
+                She looks sad for a moment, weakly lifting a hand as if to ask you to stop. The hand turns into a tightened fist. <i>Very well, [name]. I cannot discuss the merit of your ethics, however appalling they may be. I can, however, defend myself. Prepare yourself!"</i>
+
+                You're fighting a Dullahan!
+            </text>
+            <text name="curse-victory">
+                You fall, too weak to continue fighting.
+
+                The Dullahan walks towards you while sheathing her saber. <i>"I expected more from you, [name]. In combat and in perspective both. Your misguided hunt for "purity" led you to this.</i>
+
+                You groan, attempting to get up and attack her. <i>"I thought I had a friend, for the first time in decades. I suppose I'll have to keep searching. I wish I could just leave you here, but considering the lengths you've gone to fight me, I-"</i> She unsheathes her saber again, and points it at you.
+
+                She frowns. <i>If I leave you be, you'll keep hunting me. Right? Trying to rid the world of some sort of eldritch pestilence, to right a massive mistake from nature. I can't live like a prisoner of fate again. I can't-</i> The blade wobbles in her weakening grasp.
+
+                She whimpers, and sheathes her saber. <i>"I hope- I hope there is a place in the afterlife to punish you, [name]. Because I can't do it. You've taken a burden from my life, gave me a glimmer of hope, and then destroyed it, taking its place. We will not meet again."</i>
+
+                The woman whistles for her horse, and she mounts it. She rides into the forest, with a conscious effort to avoid you for the rest of her eternal life.
+            </text>
+            <text name="curse-defeated">
+                The knight falls, covered in wounds that no human could recover from. She rolls over, facing the sky. She lifts her trembling hands and stares at them, covered in her cold, cursed blood.
+
+                <i>"What a life you've lived, Evelyn. Born once, dead twice. Hah, I sure spat on the face of nature, I sure-</i> She groans in pain.
+
+                You approach her, ready to deliver the final blow. When you reach her sight, she stops staring at her bloodied hands, and moves her gaze to you, barely moving her head due to the overwhelming pain. <i>"Good work, champ. Be sure to tell this story when you go back to Ingnam. Spare the part where we laughed, sparred and told stories about eachother, though. Might ruin the heroism of it all."</i>
+
+                You raise your [weapon] towards her chest, eliciting no resistance from her. You breathe deeply and strike one final time, hitting her chest with all your might. Her eyes widen in newfound pain, and then lose focus as her cold blood stops pumping from her wounds. <b>The Dullahan is dead.</b>
+
+                You look around for her horse, but it seems to have disappeared. There's nothing more to do here.
+            </text>
+
+            <text name="future">
+                You ask her what her plans for the future are, now that she's free. She crosses her legs and looks at the sky, pensive. <i>"I don't know, [name]. I've spent more of my "life" as an undead abomination than as a normal woman. It's hard to remember what it is like to have warm blood, to thirst, hunger, you know, the usual living needs."</i>
+
+                She laughs weakly at the simplicity of the things she misses, and faces you. <i>"As I've told you before, I've given up on a normal life now. There's no point in clinging to the past. I'll remain here, finding my fun spooking goblins and imps, riding across the land whenever I get bored of that. Besides, there's one hero that just keeps showing up here to talk to me, and [he]'s great company."</i> She makes a genuine smile after saying that, swinging her propped leg in lighthearted way, signalling her honesty.
+
+                You smile with her. It certainly could be a lot worse, considering what the demons have done to some. There's a certain air of melancholy in the following silence, but it's not a completely uncomfortable one.
+
+                She suddenly narrows her black-gold eyes and bends towards you, inquisitively. <i>"What about you, hero? What do you plan to do after your quest is complete? After you take down the king or queen of demons, what's the plan?"</i> As usual, whenever you prod her, she prods back. A relevant question for sure, though. Your scratch your head, trying to figure out a response.
+            </text>
+            <text name="future-answer">
+                <switch value="$answer">
+                    <case value="0">
+                        You think for a moment and then answer that you'll probably go back to Ingnam, celebrate, hang your weapons and enjoy a long, deserved rest, fit for a great hero. She laughs.
+
+                        <i>"Simple answer, but as good as any other! A week of alcohol and a fair bit of decadence to celebrate, and then you stretch your legs and just grow old. Won't have to work a day in your life because, hey, you're the hero of Ingnam! Sounds good, I like it."</i>
+                    </case>
+                    <case value="1">
+                        You think for a moment and then answer that you'll likely just stay in Mareth. You enjoy the rough living, the adventures, meeting new foes and friends. Ingnam would feel awfully small after what you've been through.
+
+                        <i>"Keep the adventuring spirit alive, huh? Sounds fun. Who knows what's lying in wait out there? Mareth has many hidden secrets, and maybe you'll be the one discovering them all. Just keep in mind that such a life is likely a short one, for good or ill. The candle that burns twice as bright burns half as long, but there's no point in living long if you don't care for being old, I think."</i>
+                    </case>
+                    <case value="2">
+                        You lower your brow and narrow your eyes. You'll fullfill your quest, alright, but you intend to confront the elders of Ingnam about what you found out in the demon factory. You weren't the first to be sacrificed like that, but you're certainly going to be the last.
+
+                        <i>"Damn, that's rough, [name]. I fully support getting some payback, as long as innocents stay out of the way. Don't go too crazy on your vengeance, but give the bastards hell, if they really did what you say they did."</i>
+                    </case>
+                    <case value="3">
+                        You answer without too much difficulty. If you take down Lethice, it's only fair that you become the next ruler of Mareth!
+
+                        <i>"Well, sure, I guess, that makes sense. Do you really want to be a ruler, though? I get the glory aspect, but there's probably a lot of boring responsibilities, jealous court members, plotting, taxes, and other things I don't even know enough to know that I don't like. I'm betting that the Lethice girl has suffered her fair share of betrayals and uprisings, and I'm even willing to bet she got there with a betrayal herself. The world of politics is rotten, [name]. If you do decide to go for that, just keep that in mind."</i>
+                    </case>
+                </switch>
+
+                You keep her words in mind. It's good to speak your mind every once in a while.
+            </text>
+
+            <text name="spar-offer">
+                You invite the dullahan to a sparring match.
+
+                <i>"Ah, now that's a good idea!"</i> she says, evidently excited. The two of you move to a clearing in the forest and begin combat!
+            </text>
+
+            <text name="leave">
+                You look at the night sky, taking note of the position of the moon, and tell the dullahan that you should head back to camp.<i>"Alright. Have a good night."</i>, she says, already moving on to mount her horse.
+            </text>
+        </lib>
+        <lib name="defeated">
+            <text name="postRude">
+                You land the final blow on the dullahan. Its body drops to the ground, too wounded to continue standing.
+
+                You approach the dullahan, ready to strike her down for good. Before you can do that, however, she gets up, as if controlled by a puppeteer. She turns around to face you, morphs into a specter, and launches herself towards you!
+
+                You protect yourself, as the specter phases through you, but you suffer no damage. She's gone.
+            </text>
+            <text name="hp">
+                You land the final blow on the dullahan. Its body drops to the ground, too wounded to continue standing. Satisfied with your second victory, you sheathe your weapons and continue your path.
+
+                <i>"You haven't beaten me yet!"</i> You hear, in the all-too familiar voice of the Dullahan. You turn around, sighing, as the head somehow rolls over and faces you, with a determined stare.<i>"I've suffered worse! I'm the Harbinger of <b>DEATH</b>! The Gan Ceann! The horrifying headless horseman! The-"</i>
+
+                You could leave her speaking and leave or stay there to hear her ramblings.
+                <if test="player.isNaga() eq false and player.str ge 60">
+                    Or you could kick her head into the forest so you could finally find some peace.
+                </if>
+            </text>
+            <text name="kick">
+                Tired of her childish ramblings, you stretch your legs, run towards her, and kick her with all your strength. She's launched into the darkness of the trees and bushes, and you know her body will have a hell of a time finding her.
+
+                And that's enough insanity for today. Time to head back to camp.
+            </text>
+            <text name="spar-hp">
+                You deal the final blow to the dullahan. She staggers back and falls to the ground. <i>"Damn, good one, [name]! You don't fool around when fighting, do you?</i> You extend your hand to help her up, and she takes it, scoffing in a playful manner. <i>"Don't let it get over your head. I'll get you next time."</i>
+
+                You nod, and the two of you sit on the nearby rock to rest a bit. You don't notice it now, but trying to land hits past the dullahan's absurdly agile defense has <b>improved your speed</b>.
+
+                <if test="$scene.timesWonSpar eq 4">
+                    <b>While resting, you notice that the undead girl is awfully pensive. She has something on her mind. Maybe she'll talk about it the next time you meet her.</b>
+                </if>
+            </text>
+            <text name="spar-lust">
+                The dullahan's normally pale blue face is now evidently purplish, and she has trouble focusing on your movements. Her body, however, is much more honest. Her legs are shaking and she seems to not care at all about the ongoing combat. Against her will, the dullahan's arms start groping her own body, looking for release.
+
+                <i>I... I think we should take a break. We can call it a draw.</i> She walks away from the clearing, fighting her body with every step, dropping her cavalry saber in the process. This is definitely a victory for you, however unorthodox it may be.She's looking much more receptive to the premise of sex now.
+            </text>
+            <text name="spar-lust-offer">
+                You follow, and ask if there's something you could do for her since she's looking ill, rather sarcastically.
+
+                <i>"[name], can you just go..."</i> She breathes deeply. <i>"I know what you want. And it's pretty evident that I want it too. Just one thing: No penetration. This is absolutely forbidden. And you don't want to know why."</i>
+
+                <switch>
+                    <case test="silly()">You wonder why. Vagina dentata?</case>
+                    <case test="$knows">Sadly, you know why.</case>
+                    <default>You wonder why, but you decide it's better not to pry.</default>
+                </switch>
+            </text>
+            <text name="spar-lust-notaurs">
+                You follow, and ask if there's something you could do for her since she's looking ill, rather sarcastically.
+
+                <i>"[name], can you just go..."</i> She breathes deeply. <i>"I know what you want. And it's pretty evident that I want it too. But... you know, you're a - what's the word I'm looking for here - a horse! Or at least, partially one. I have horse! I've been riding her for decades! If I had sex with your... lower body, then the rest of my time in this world would be extremely awkward whenever I rode my steed. And since I'm undead, this is a lot of time indeed. I'm sorry, I'm just not attracted to that. I hope you understand."</i>
+
+                Well, it's not often someone outright refuses to have sex with you like that.
+            </text>
+            <text name="lust">
+                The Dullahan continues to stare directly at you, keeping focus.
+                However, its body clearly has something else in its "mind", as it fidgets, incapable of keeping a combat stance.
+                Finally, it gives up and drops its weapon, annoucing that you're the victor.
+                <i>"No, stop it! Control yourself, damn it!"</i> the head shouts at its own body.
+                This awkward conflict continues until the body decides to forcefully detach its head from its shoulders and run into the bushes for a bit of privacy.
+                The head stares at you angrily for a moment.
+                After a while, it starts blushing, and breathing rapidly.
+                It soon turns to mild moaning.
+
+                <i>"When I'm... done... you'll suffer my wrath!"</i> she says between moans.
+
+                As bizarre as this situation is, you can't help but feel aroused.
+            </text>
+
+            <text name="wait">
+                <if test="$hp">
+                    You stare at the disembodied head, hoping she'll understand her predicament.
+
+                    <i>"I'm... I'm the..."</i> she trails off, sighing in frustration.
+                    <i>"Well. We'll call it a draw."</i>
+                    You stare harder, and turn your head.
+                    <i>"Well, alright! You've beaten me! Now, can you please help my body find me again?"</i> she asks, pouting.
+
+                    You look down into the clearing and notice her body is back up, wounds completely healed, trying to find its head.
+                    <else>
+                        You stare at the disembodied head as it contorts in pleasure..
+
+                        <i>"I'm... I'm the..."</i> she trails off, moaning. You sit on the ground while watching her face blush harder and harder, eyes fluttering in pleasure as the moans shyly. After a few moments, she whimpers and shuts her eyes, meaning that, somewhere in the bushes, her body reached climax. After a few seconds, she opens her eyes, and stares at you.
+
+                        <i>"Alright, you've beaten me! Now, can you please help my body find me again?"</i> she asks, pouting.
+
+                        You look down into the clearing and notice her body is back up, trying to find its head.
+                    </else>
+                </if>
+
+                You grab the dullahan's head and deliver it to the body, causing it to jump in excitement. It then reattaches the head to its torso.
+                <i>"That's much better."</i> A long pause happens as she looks at you. <i>"Thanks."</i>
+
+                Another pause. <i>"I guess I'm going no-"</i> You interrupt her, to her surprise, and ask why she attacked you out of nowhere, for no reason.
+
+                <i>"Well, I just wanted to scare you, but when you actually started fighting I thought I might as well go all the way."</i> The knight says, dusting herself off. <i>"Most imps and goblins just run for their lives when an undead spectral horseman wails and charges at them. Funny, sure, but I haven't had a good fight in ages. You sure showed me one!"</i>
+
+                You smirk and let out a small laughter. Yeah, heh, you did. A moment passes before it dawns on you to ask her if she's really undead<if test="flags[kFLAGS.TIMES_POSSESSED_BY_SHOULDRA] ge 1" then=", not that this is the first time you've met one, in a way." else=" since that's the first time you've... met one."/>
+
+                She fidgets around, flustered by the interest you're showing in her. <i>"Well, sure I am. Probably. I guess. I mean, I obviously can't die and I haven't eaten or drank in decades, so maybe I'm already dead? It's just something you stop thinking about after a while."</i>
+                <if test="kGAMECLASS.shouldraFollower.followerShouldra()">
+
+                    Unable to contain herself, Shouldra decides to join in in the conversation, jutting out of your chest. The Dullahan's brows raise, but she doesn't show the sort of surprise a normal person would.<i>"Let me confirm this, boss."</i>, the ghost says, leaving your body and launching itself towards the dullahan. It goes inside the pale blue body and then promptly returns. The knight only stares. <i>"Super dead, I can't possess her. Strange that she isn't aware of it, though. Normally, dying is a pretty memorable event in someone's life."</i>
+                </if>
+
+                The dullahan seems a bit distressed. <i>"Right. Well, nice meeting you, [name]. I know your name, by the way. I'm a Dullahan. I'm going to leave now. Maybe we'll meet again."</i> Before you can protest, the knight's undead horse appears, seemingly out of thin air. She mounts it and leaves.
+
+                That's enough for one night, you think. Time to go.
+            </text>
+            <text name="leave">
+                You leave the annoying head to its ramblings. You have better things to do. For example, sleep.
+            </text>
+
+        </lib>
+        <lib name="victory">
+            <text name="part1">
+                You collapse to the ground, overwhelmed by your supernatural opponent.
+
+                The knight approaches you, wielding its enormous scythe. <i>"[name]! Prepare for your <b>RECKONING!</b></i>
+
+                The knight morphs into a horrifying black specter, slowly lifting its scythe, which somehow drips in blood. It approaches you, every movement invoking the soul-tearing wails of the dead, the world blackening with every one of its maddening steps.
+
+
+            </text>
+            <text name="part2">
+                The forest closes in. A spine-chilling gust of wind rustles the bone-like branches and lifeless leaves, whispering doom into your mind. You cower. Wherefore, heroism?
+
+                <if test="player.inte ge player.str">
+                    You laugh and cry. Your mind, as trained as it was, cracks under the unbearable weight of this cyclopean opponent. Madness fits you - the sublimity of intelligence.
+                    <else>
+                        Your strength, once the pride of Ingnam, fades to nothing. Against this unspeakable evil, you are frail. You have failed.
+                    </else>
+                </if>
+
+                The scythe cuts the air, dashing towards your neck. You stand at the precipice of oblivion, and even your now-twisted mind cannot fathom the unbearable horrors you'll soon come to know. The scythe kisses your neck, the harbinger of death that laughs at the pathetic defiance of man. This is the end.
+            </text>
+            <text name="part3a">
+                You're reaped and your soul claimed, a resource for rituals of unspeakable evil. Your quest is over.
+            </text>
+            <text name="part3b">
+                You wake up, screaming wildly, clawing the ground, and scared for your life, but alive. Your wounds are evidence that your fight was no dream, but why didn't it finish you off?
+
+                You shake the thoughts away from your head and move to camp. What a night.
+            </text>
+            <text name="spar">
+                You collapse to the ground, overwhelmed by your supernatural opponent.
+
+                The knight approaches you, wielding its enormous scythe. <i>"[name]! Prepare for your <b>RECKONING!</b></i>
+
+                The knight morphs into a horrifying black specter, slowly lifting its scythe, which somehow drips in blood. It approaches you, every movement invoking the soul-tearing wails of the dead, the world blackening with every one of its maddening steps.
+
+                Just as you believe she's actually going to go through with the reaping, she almost instantly changes back and extends a hand to help you get up, eyes glowing with the joy of victory and mischief. <i>"I win this one, [name]! Not bad overall, though.</i> You get up, still shaking from the maddening sight you were just subjected to. You breathe in relief and take her hand, though your entire body still hurts.
+
+                She doesn't take duels lightly, that's for sure.
+            </text>
+        </lib>
+        <lib name="sex">
+            <text name="notaur">
+                You ask her if she's willing to have sex. <i>"[name], well... I know what you want. And I want it too. But... you know, you're a - what's the word I'm looking for here - a horse! Or at least, partially one. I have horse! I've been riding her for decades! If I had sex with your... lower body, then the rest of my time in this world would be extremely awkward whenever I rode my steed. And since I'm undead, this is a lot of time indeed. I'm sorry, I'm just not attracted to that. I hope you understand."</i>
+
+                Well, it's not often someone outright refuses to have sex with you like that.
+            </text>
+            <text name="accept">
+                You ask her if she's willing to have sex.
+                <i>"You know what? I woke up with an itch today. We can screw around, sure! Although, still, no penetration. This is absolutely forbidden. And you don't want to know why."</i>
+
+                <switch>
+                    <case test="silly()">You wonder why. Vagina dentata?</case>
+                    <case test="$knows">Sadly, you know why.</case>
+                    <default>You wonder why, but you decide it's better not to pry.</default>
+                </switch>
+
+            </text>
+            <text name="decline">
+                You ask her if she'd be interested in sex.
+                She immediately scoffs and looks away, while her body immediately jumps and shuffles in excitement. She sighs in frustration.
+                It's pretty evident that her body and... her, have some different opinions in certain topics.
+
+                <i>Well, no, I'm not really interested."</i>
+                You mention how her body is bending forward and pressing her breasts together with her arms just as she's saying that.
+                <i>"Look. I'm undead. Doesn't it make sense that I'm a bit... frigid? My body, however, seems to have a bit of a sex drive. And since I'm in control, I say no."</i>
+
+                Her body slumps in depression after hearing that.
+                Maybe if you arouse the dullahan enough, she'll give in to the heat of the moment.
+                But right now, she's as frigid as a rock.
+                <if test="$canrape">
+
+                    You could just take her by force. You bet that once your get started, the body will take over, and the head won't be able to do anything but watch!
+                </if>
+            </text>
+            <text name="leave">
+                After that awkward bit of conversation, you decide to head back to camp. You part amicably, though a bit hurt by the rejection.
+            </text>
+
+            <text name="victory-cunnilingus">
+                You approach the knight's moaning head. She looks at you, with only a token attempt at appearing angry.
+
+                You show her your <if test="player.averageVaginalWetness() ge 4" then=" drenched" else="moist"/> [vagina], causing her eyes to widen. She blushes even harder as she then averts her gaze, the red of her cheeks contrasting with her pale blue face. After a while, she looks at you again.
+
+                <i>"...Yes"</i> she says, answering a question that didn't need to be asked.
+
+                You grab her head, which is mostly cold, outside of her blushing cheeks. You look straight into her black and gold eyes, which, although unusual, are definitely beautiful. She looks at you and cocks her brow, waiting for you to start.
+                <switch value="player.cor">
+                    <case lt="30">
+                        This is definitely one of the weirdest things you'll ever do in your life. If you ever return to Ingnam, this is one story you'll omit.
+                    </case>
+                    <case lt="60">
+                        This land really got to you. You're definitely excited to do this!
+                    </case>
+                    <default>
+                        You've seen and done your share of bizarre sexual acts, but this is still new. You can barely wait!
+                    </default>
+                </switch>
+
+                You push her head into your [vagina], and she starts licking. Her tongue is unnaturally cold, causing you to recoil from the first few licks, but it doesn't take long for you to get used to the uncommon sensation and start enjoying it. She's extremely skilled at this; she expertly prods your pussylips, teases and sucks your [clit], doing it slowly enough that you get to enjoy every stroke of her tongue, but fast enough that the stimulation is constant. Your breath quickens rapidly and your lower body goes weak. Soon, you're down on the ground, moaning as the dullahan continues her assault on your pussy.
+
+                You're in disbelief. You wonder for a moment; how a cold tongue could feel so good? One expertly done lick later and you give up on thinking, and just push the dullahan's head as tight as you can into your muff. She eagerly and noisily slurps your juices, and your eyes roll back into your head as you close your eyes, lost in bliss.
+
+                You hear rustling, and open your eyes. You're surprised to the sight of long, thigh-high covered legs and a moist pale blue pussy over your face. The dullahan's body wants some help! She squats into your face and you eagerly extend your tongue, trying your best to give as much as you're receiving. She grinds into your lips and nose while you prod her unnaturally cold cunt.
+
+                Your tongue fucking seems to have an effect, as the head starts losing composure, growing sloppier and faster with its cunnilingus. You increase the intensity of your own licking, and both of you get closer and closer to orgasm.
+
+                Finally, both of you reach your limits and squirt, covering eachother's faces in girl-cum. The dullahan's body drops over yours, and you release the dullahan's head, unable to control your own muscles. The two of you stand there for a few moments, enjoying the throes of orgasm together on the cold grass. You quickly fall asleep, utterly satisfied.
+
+                You wake up some time later, and the dullahan is gone. You get up and head towards camp. You think to yourself: maybe, in the end, she really did win?
+            </text>
+            <text name="victory-blowjob">
+                You approach the knight's moaning head. She looks at you, with only a token attempt at appearing angry.
+
+                You show her your stiffening [cock], causing her eyes to widen. She blushes even harder as she then averts her gaze, the red of her cheeks contrasting with her pale blue face. After a while, she looks at you again.
+
+                <i>"...Yes"</i> she says, answering a question that didn't need to be asked.
+
+                You grab her head, which is mostly cold, outside of her blushing cheeks. You look straight into her black and gold eyes, which, although unusual, are definitely beautiful. She looks at you and cocks her brow, waiting for you to start.
+                <switch value="player.cor">
+                    <case lt="30">
+                        This is definitely one of the weirdest things you'll ever do in your life. If you ever return to Ingnam, this is one story you'll omit.
+                    </case>
+                    <case lt="60">
+                        This land really got to you. You're definitely excited to do this!
+                    </case>
+                    <default>
+                        You've seen and done your share of bizarre sexual acts, but this is still new. You can barely wait!
+                    </default>
+                </switch>
+
+                You lower her head into your <output>'[cockhead '+$x+']'</output>. She opens her mouth and gently and slowly licks it, leaving a string of saliva between your cockhead and her lips. Her tongue is cold, causing an odd but pleasurable sensation.
+
+                <switch value="player.shortestCockLength()">
+                    <case lt="9">
+                        You push your <output>player.cockDescriptShort($x)</output> into her mouth. You manage to hilt yourself on her lips, and it doesn't look like she has much of a gag reflex. You move her head back and forth as she licks somewhat clumsily, her golden eyes looking up, straight at you. Every time you remove your cock from her mouth, she licks around your head, slathering it with more cold saliva.
+
+                        You continue to thrust into her mouth, both of you moaning with increasing intensity.
+                    </case>
+                    <default>
+                        You push your <output>player.cockDescriptShort($x)</output> into her mouth. You're sure you hit your limit when the first few inches are in, but oddly enough, there's no resistance. You push further, and an utterly alien sensation covers your cock. There's no real description for it; <if test="player.inte gt 60" then="eldritch" else="bizarre"/> is the best you can come up with. You hilt yourself on her lips, and she doesn't seem to be phased at all, despite your length. You move her head back and forth as she licks somewhat clumsily, her golden eyes looking up, straight at you. Every time you remove your cock from her mouth, she licks around your head, slathering it with more cold saliva.
+
+                        You continue to thrust into her mouth, both of you moaning with increasing intensity.
+
+                    </default>
+                </switch>
+                You close your eyes, focusing on the sensations, pumping deeper and letting her work on your cock. It's definitely great, but it's just not good enough. You feel your motivation to continue slipping by, and you slow down gradually.
+
+
+
+                That's when you feel something hug you from behind. A perky pair of breasts on your back, arms around your chest, and positively soaked legs wrapping around yours. It pushes and shifts on you a bit before releasing you. It circles around to show itself; it's the dullahan's body! She saunters seductively towards her massive scythe and bends over to pick it, revealing her soaked panties beneath her short white skirt. She grinds seductively on it, pressing it against her leather-covered breasts and her pale blue, toned thighs, occasionally turning around and bending over just enough for you to peek at her panties, girl-lube running down her legs.
+
+                This erotic display rekindles your motivation. You thrust harder and faster, fucking the dullahan's head. The body decides to sit down on a rock and start masturbating through her panties, teasing you with quick views of her ass and pussy every once in a while.
+
+                This time, it doesn't take long for you to reach your limit. You push yourself as far as possible into the dullahan's mouth, and release.
+
+                <switch value="player.cumQ()">
+                    <case gt="500">Despite your normally gargantuan loads, she doesn't seem to have trouble swallowing it all. In fact, she doesn't even seem to notice you came at all. It's as if the inside of her mouth is a bottomless pit.</case>
+                    <default>She swallows your load eagerly without any trouble.</default>
+                </switch>
+
+                You breathe deeply as your orgasm high fades. You look at the dullahan's face. From her half closed eyes and pleasured moaning, it seems she reached an orgasm of her own. You release your cock from her mouth, thick strands of saliva and semen linking it to her lips. You look at her body. It's clear it is also enjoying the last throbs of her orgasm as well.
+
+                You shuffle lazily to her body, and reattach her head. <i>"Will get my... revenge..."</i>, she whispers before dozing off.
+
+                What a night. You head off back to camp, utterly satisfied.
+            </text>
+            <text name="blowjob-tease1">
+                How about an old fashioned blowjob? You ask her a straightforward question, and she frowns. <i>Blowjobs are so boring. What do I get out of it? I have to work you as I work myself too. I mean, we could 69, but there's nobody that can match me in that so it wouldn't feel nearly as g-"</i> as if tired of her own head, the Dullahan's body raises her arms and detaches her head from her torso. <i>"Stupid body! Stop that! I'm in charge here!"</i> the body is visibly annoyed, her chest making a motion of sighing. She throws the annoying head to you, and you grab it, keeping it unable to see her own body.
+
+                You look at the piercing narrowed black and gold eyes, and she stares back, pouting. <i>"Don't even think about it."</i> You look at the body, which is now giving you a thumbs up, slightly misaligned due to its lack of vision. You're getting mixed messages here!
+
+                The head scoffs. <i>"Well, you can't make me suck a dick. If you force yourself I'll just bite it off, so we'll just stay in this stalemate forever."</i> You look at the body. It rests its hands on her wide hips, annoyed. It suddenly lifts one of its hands off, pointing the index finger upwards, making an "idea" sign. She then takes that same finger and quickly teases her clit with it, causing the head to exhale deeply, surprised with the sudden arousal.
+
+                <i>"[name], what is my body doing? Show me what my body is doing, right now."</i> You do not, of course, meeting her angry demand with a smug smile. The body then pinches one of her nipples through her leathery corset, twisting and pulling it just on the edge of pain. The head exhales again, hues of purple starting to appear over her blue cheeks.<i>"Damn it... [name], I don't like being played around like this..."</i>
+            </text>
+            <text name="blowjob-tease2">
+                Your <if test="player.cockTotal() gt 1" then="[cocks] are" else="[cock] is"/> already growing erect by this bizarre situation,
+                <if test="player.hasVagina()">your vagina also drooling quite a bit,</if>
+                and you're not about to give up now. The body also seem to enjoy this. It sits down, opening her legs to reveal just a glimpse of her panties under her short skirt. Quite good at teasing, her body. She begins groping her breasts and rubbing her clit, slowly at first, but quickly picking up the pace. <i>"yes..."</i> the head whispers to herself between moans. As the pace is raised, her ability to contain her own moans disappears, and soon she seems to be completely immersed in her involuntary masturbation. You look at the head on your arms, now almost entirely purple and covered in cold sweat. Despite clearly being disembodied, when covered in that haze of lust, it's still very erotic. She's going to orgasm soon, you can see that.
+
+                And then, the body stops. The hand groping her breasts releases it, trembling, and her soaked fingers stop rubbing her own clit. You can feel the head breathing rapidly as she open her eyes, desperate. <i>The... the bastard. It's teasing me? Teasing itself?</i> The body slowly pulls her panties to the side, revealing her leaking pussy in full. She points two fingers at it, in preparation. <i>I'm not about to suck a cock just because of something like that-</i>
+
+                The body plunges her two fingers inside her cunt, hooks it upwards, and does a quick thrust, immediately causing her pussy to squirt. She then removes it, and prepares three fingers for the next thrust. The head stops speaking immediately, a loud, pleasured moan taking precedence over whatever she was trying to say. She moans a few more times before she regains her focus. You raise the lolling head and approach it to your own. <i>"I think your body is trying to tell you something. Maybe she'll let you orgasm if you do something specific.</i> You say, with the cheekiest tone you can muster. <i>"[name], if I don't have a cock in my mouth in the next ten seconds, by the end of this night I'm not going to be the only person that's decapitated."</i> The dullahan says, voice trembling with both pleasure and anger.
+
+                It's her request. You lower her head towards your crotch, allowing her to get a full view of your [cock]. You point her lips towards your [cockhead]. She looks at it, evidently full of desire, but still showing defiance.
+
+                The body somehow notices that, and three fingers plunger inside her pussy. Almost immediately, the dullahan opens her mouth and attacks your erect cock,
+                <switch value="player.cocks[0].cockThickness">
+                    <case gte="4"> although taking her head is just about all she can do.</case>
+                    <case gte="3"> struggling to actually open her mouth enough to take it.</case>
+                    <default> immediately engulfing most of it without trouble.</default>
+                </switch>
+                Still overwhelmed by the recent attack on her cunt, she can't do anything but moan on your cock, making you shudder and throb with the vibration. Her lips clamp tightly around your member, and she feverishly licks the glans and underside, desperate for release.
+
+                You breathe hard and begin to thrust her head in and out, relishing on the texture of her lips, the wetness of her tongue, and the desperate licking. The body, realizing all modesty has finally been lost, resumes her masturbation in full, rubbing her clit with her thumb, thrusting into her pussy with the remaining fingers, grinding on her palm using her hips, and energetically groping her own breasts. You alternate between staring at the half-lidded head furiously sucking your cock, and the voluptuous body furiously masturbating herself. You're not sure which one is more erotic.
+            </text>
+            <text name="blowjob-tease3">
+                A tingling in your prostate signals your impending orgasm, and you push your [cock] completely inside her, buckling with pleasure.
+
+                You ejaculate inside her, and she continues to suck through every single throb. You briefly look at her body, and you notice her pussy has practically trapped her hand inside her, desperately attempting to milk it at if it was a cock. Again, she moans on your member, enhancing the pleasure.
+                <if test="player.cumQ() gt 1500"> Somehow, she manages to take your obscene load without an issue.</if>
+
+                After several jets, you're spent. She continues sucking with decreasing intensity, too dazed by her own orgasm to notice that yours has ended. After it goes soft, she begins just gently licking around the head. Quite a lot of love for a girl that apparently hated giving blowjobs.
+
+                You sit down and release the head from your member. You look at the exhausted body just a few meters ahead, sprawled out over a rock, then at the head you're holding. It's apparently fast asleep. After putting her head on your side, you throw your head back and close your eyes, intending on resting too.<i>"Hey... [name]..."</i> you slowly open your eyes and look down at the disembodied head. <i>"Put me near your face. I want to- you know."</i>You smile and grab her head, putting it next to yours. She does her best to nuzzle on your neck, and then lightly kisses it. Soon you're both taking a well deserved rest.
+            </text>
+            <text name="cunnilingus">
+                You tell her that she doesn't have to worry about that, and that you'd be fine with a bit of cunnilingus.
+                <i>"My speciality. I hope you can keep up!"</i> she says, already stripping off her clothing.
+                <if test="player.lib gt 50">You're pretty sure you can take her on.</if>
+
+                She strips completely, and you get a full sight of the dullahan's naked body. Her assets aren't as extreme as the ones from some of the other people and creatures you've encountered, but she's well proportioned, with her E-cup breasts maching her hips perfectly in width, and her toned waist being thin enough to give her somewhat of an hourglass figure. Her long white hair serves as an amazing backdrop for her pale-blue figure, reaching all the way to her hips. As a finishing touch, her thighs, wide and long as they are, still make a "gap" where they touch. Perfect for stuffing your face in, you think to yourself.
+                <if test="player.isNaked()">
+                    You stand naked, ready for her.
+                    <else>
+                        You strip off from your [armor] yourself.
+                    </else>
+                </if>
+                She looks at you with a predatory look that you didn't know she could display. She's eating you with her piercing golden gaze. Her lower body is also excited, already  puffy and dripping in girl-lube. You tease your lips and you're soon <if test="player.averageVaginalWetness() gt 3" then="drenched" else="moist"/> yourself.
+
+                The two of you hug tightly, groping at each other's assets with unbridled lust. She kisses your lips, then your neck, and your collarbone. You return the gesture, and soon, the two of you are panting with need. She tweaks your nipple, eliciting a pleasured moan from you. You reach around her hips and tease her slick and cold pussy with a finger, gently thrusting in and out. She moans, and gently bites your neck, barely able to restrain her desire.
+
+                <i>"[name]... I really need this. Let's do it."</i> You gently push her down into the grass with a wet kiss. You trace her contours with your finger while turning around, to face her glistening pussy. You lower your lips into her engorged button, and gently lick. She gasps, then immediately throws her arms forward to grab and lower your hips into her mouth. She grabs a mouthful of your lower lips, not wasting any time with foreplay; she eagerly licks your labia and sucks on your button, absolutely devouring your womanhood. You briefly stop teasing hers, unable to handle the sudden surge of pleasure<if test="player.averageVaginalWetness() gt 3"> and even squirting a bit on her face</if>.
+                By Marae, she's good at this!
+
+                You can't sit back and enjoy her work forever, though, as her legs suddenly pop up around your head and close down, locking your mouth in her muff. She grinds her hips on your face, helping you pleasure her. While it was evident her body had a will of its own, it becomes clear here; no normal person would be capable of such dexterity while performing masterful oral sex.
+
+                You do your best to pleasure her while the assault on your pussy continues, and it certainly has an effect, as she's moaning deliciously between licksYou can't endure against her, however, and you orgasm first, <if test="player.averageVaginalWetness() gt 3" then="splattering" else="coating"/> her face with girl-cum.
+
+                The assault doesn't stop, however. She wants more! You redouble your efforts to bring her to climax as well, fighting through the absurd pleasure, your entire body wracked in small convulsions that rob you of control. Her pussy begins to contract as you work harder, and shortly thereafter, you're gifted with a squirt of cold girl lube. The orgasm is too much for her, and she slows down. Her legs release your head from its lock, flopping to the ground.
+
+                Lust still stirring between you two despite the exhaustion, you remain on the grass, pleasuring each other for several minutes, licking each other ever more delicately, prompting smaller and sweet orgasms, leaving both in bliss for almost half an hour.
+
+                Some time passes, and the two of you wake up from a well deserved post-sex nap.<i>"[name], you were absolutely amazing. I look forward to doing this again."</i> She says, putting her clothes back on. <i>"Provided you can convince me, that is. I don't want to make it too easy.</i> She calls her horse, and after a few seconds she has left the clearing. You look at the night sky for a while before getting up and heading back to camp. You'll be sleeping soundly tonight.
+            </text>
+
+            <text name="rape">
+                You approach the dullahan, already <if test="player.isClothedLower()" then="stripping off your [armor]" else="stroking your [cock]"/>. Her eyes widen and she tries to rear back, though her body betrays her and gets up, sauntering towards you.
+                <i>"[name], this is a terrible idea. You don't understand just how stupid this is! My body will-"</i> one of her hands goes over her mouth, silencing her, and soon she is detached from her own body and thrown over the bushes, screaming. She won't be bothering anyone now.
+
+                The dullahan body pushes you into the ground. She quickly removes her panties and straddles you, her pale blue pussy standing just inches above your cock. The sight of a headless body on top of you is rather unnerving, but the perky breasts and toned legs more than make up for it.She lowers herself on top of you, fully taking in your [cock], and twisting her hips once she hilts herself, to completely taste your penis. She squeezes it with a tightness you didn't know vaginas could have, and the coldness makes the sensation truly unique. What truly distinguishes this feeling, however, is what's happening at the tip of your cock. It's something otherwordly, outside of human comprehension. You immediately throw your head back, brought to the brink of orgasm before sex even really began.
+
+                You moan loudly, and this prompts the dullahan's body to begin moving. She grinds and rides you cock masterfully and powerfully. Due to her lacking a mouth, there's no moaning on her part, but the grinding of her hips combined with her plentiful girl-lube on your crotch work to create an extremely sexual and erotic sound.
+
+                You begin clawing at the ground, and then throw your hands over her skirt-covered hips, thrusting harder, overwhelmed by desire. She takes this opportunity to remove her hands from your chest and work it to tweak her nipples through her leathery corset, while continuing to milk your cock diligently.
+
+                It doesn't take long for you reach orgasm. You ejaculate inside her, momentarily finding release. She doesn't stop grinding on top of you, however, and you soon find yourself ejaculating again.
+
+                You smile as your [cock] almost instantly engorges while inside her, filling you with even more desire. For a woman that didn't want to get penetrated, she sure is delicious to take!
+
+                You see her perky breasts bouncing and jiggling over your face, and your mouth waters with desire. You grab her hands and pull them from her tits, sending her a message that she answers immediately. She bends towards you, letting your mouth have an easy access to her nipples. You bite softly and lick, appreciating the texture and rigidness of her hard tit, and she visibly shudders, clamping even harder on your cock. You bet that if she had a mouth, it would be moaning loudly right now.Having her breasts on your mouth and her incredible cunt milking your cock is too much. You ejaculate again. What an amazing fuck this was!
+
+                Except it hasn't ended. She continues to grind, and your cock springs into action again, almost as if nothing had happened.
+                <switch value="player.lib">
+                    <case lt="30"> This is definitely unusual, considering your usual libido.</case>
+                    <case lt="60"> You're used to not tiring from fucking, but this is unique!</case>
+                    <default> Is this a result of your insane libido?</default>
+                </switch>
+
+                And again. Despite your desire to simply end this and relax, you keep orgasming, endlessly. And through all of it, the dullahan's body continues grinding, shoving her tits on your face, begging for more stimulation.
+
+                Despite the dozens of continuous orgasms you've suffered through, you still seem to ejaculate powerfully every single time. The pleasure continues to increase, and soon your mind is utterly broken. There are only two sensations in your mind: the feeling of another orgasm perpetually incoming, and the feeling of your strength being thoroughly drained.
+
+                Your vision blurs and you fall unconscious. While you're knocked out, the dullahan's body continues to grind, your [cock] still hard despite its wearer's lack of awareness. In your dreams, you see nothing but oblivion.
+            </text>
+            <text name="rape-survived">
+                You wake up, feeling like something tried to tear your soul from your body. Every single muscle in your body hurts horribly, even the ones you didn't know could hurt. Your [cock] is especially sore.
+
+                You groan as you get up and scan the area. The dullahan's body - and head - are gone. You make sure all of your equipment is in its rightful place, and scan the surrounding area. Despite your brutal fuck, there's no trace of your jizz on the ground. She somehow managed to contain all of it.
+
+                You move back to camp. After that rape, you're sure that <b>you'll never encounter the Dullahan again</b>.
+            </text>
+            <text name="rape-gameover">
+                After an hour and hundreds of ejaculations, she finally stops grinding on you. By now, your body is a shriveled, hollow husk. At some point during your encounter, you came your soul out into raw lethicite, and afterwards, the rest of your life force. She gets up and puts her panties back on. Not a single drop of your semen - or your lethicite - falls from her still-tight blue lips. She heads out into the darkness without a head to guide her, as if she's being controlled and guided by some unholy puppeteer.
+
+                Your body lies in the cold forest grass, lifeless and dry, your soul drained, a resource for unspeakable rituals. What remains of you is soon consumed by the undergrowth, your moss-covered bones the only thing reminding Mareth of the Champion of Ingnam.
+            </text>
+
+            <text name="strapon">
+                <set var="$loose" value="$anal ? player.ass.analLooseness gt ANAL_LOOSENESS_NORMAL : player.averageVaginalLooseness() gt 2"/>
+                <set var="$wet" value="$anal ?player.ass.analWetness gt ANAL_WETNESS_MOIST : player.averageVaginalWetness() gt 2"/>
+                You tell her you have the perfect tool for this dilemma.
+                She tilts her head lightly in curiosity as you go through your pack.
+                You retrieve Vapula's demonic strap-on and show it to her. Her brows raise in disbelief.
+                <i>"Wow, that's pretty creative, I guess"</i>, she says, taking the strap-on.
+                She analyzes its shape, softness and texture for a moment before turning back to you.
+                <i>"So, I wear this and-"</i> she performs a short, timid thrust with her hips. <i>"Right?"</i>
+                You nod, a bit amused at how innocent she is.
+
+                <if test="$anal">
+                    <i>"But you don't have the... slot. You know. Unless you want me to use your-"</i>
+                    You nod.
+                    <i>"Hah! Alright then, if that gets you off, sure."</i>
+                    <else>
+                        <i>"I've never fucked anyone like that, so excuse any sloppiness."</i>
+                    </else>
+                </if>
+                She spends a few moments figuring out how to wear the strap-on while you <if test="player.isClothedLower()" then=" strip off your [armor]" else=" get into position"/>.
+                After a while she has strapped it to her hips, and with a pleasured moan, she pushes her end of the dildo into her.
+
+                She begins breathing more rapidly, stroking her fake cock and exploring the feeling of having a shaft for the first time, hypnotized.
+                You cough, calling her back to reality.
+                <i>"Right! Have to fuck you! Bend over!</i> she looks downright giddy at the prospect of fucking someone.
+                You bend over, showing your <if test="$anal" then="[asshole]" else="[vagina]"/> to her.
+
+                She walks over to you and points her penis towards your <if test="$anal" then="asshole" else="lips"/>.
+                She pushes the head in slowly, unsure of how much resistance it's going to meet.
+                <if test="$loose">
+                    To her surprise, there isn't much of it, and the head pops in without much effort,
+                    <else>
+                        She notices some resistance, and hesitates for a moment. You tell her it's fine, and she pushes harder. You sigh in relief when the head finally pops in,
+                    </else>
+                </if>
+                <if test="$wet">
+                    and the rest slides in smoothly as well, aided by your natural lubrication.
+                    <else>
+                        though the rest meets a bit of resistance due to your lack of lubrication.
+                    </else>
+                </if>
+
+                After some time, she has slid all nine inches of the faux-penis inside you<if test="$anal and player.hasCock()">, the weight of the dildo pressing down on your prostate, making you shudder with lust and your [cocks] to leak beads of pre-cum</if><if test="$anal eq false">, stretching you completely and wonderfully</if>.
+                She slowly and clumsily pulls out and thrusts back in, not used to being in the giving position.
+                Your light moans motivate her, and she picks up the pace, a smile of fascination popping up on her face.
+
+                Her clumsiness has its advantages; the intermittent thrusting keeps the sensations surprising, and she occasionally has to stop and adjust her hips, which pushes the dildo up and down, pleasuring all the right spots.
+
+                She gets the hang of her job, and in a couple of minutes she has a steady pace going.
+                In the heat of the moment, and incorporating her new character, she bends towards you and hugs your back while fucking you.
+                <i>"Your <if test="$anal" then="ass" else="cunt"/> feels wonderful, [name]. Do you roam the forest at night just looking for people to fuck you hard?"</i> she lightly bites your back and scratches you with her nails as she finishes her teasing, causing your <if test="$anal" then="[asshole]" else="[vagina]"/> to clamp down on the dildo in surprise.
+
+                She continues to fuck you faster and harder, and soon you're shaking with the anticipation of your impending orgasm<if test="player.hasCock()"> your [cocks] throbbing and pulsing, welling up with cum</if>.
+                She notices your trembling, and her face turns into a mischievous smile.
+                She stops thrusting suddenly, and, as expected, she notices you're feverishly and shamelessly pounding away at her cock.
+                <i>"How lewd, [name]! Why did you ask for me to wear this when you can fuck yourself so easily?"</i> Saying this, she lightly slaps you in your ass, not entirely confident in how rough she can be.
+
+                The slap, however light, still causes you to pause for a moment, and she takes this opportunity to thrust swiftly inside you.
+                This brings you over the edge, and you orgasm powerfully,
+                <if test="player.averageVaginalWetness() gt 3">
+                    splattering the dullahan's crotch with your girl-cum<if test="player.hasCock()" then=" and" else=","/>
+                </if>
+                <if test="player.hasCock()">
+                    <switch value="player.cumQ()">
+                        <case lt="50">shooting a few strings of cum on the ground while shaking with pleasure.</case>
+                        <case lt="300">painting the cold ground with several jets of cum, moaning loudly with pleasure.</case>
+                        <default>shooting jet after jet of cum on the cold ground, creating a small pool of semen as you convulse with pleasure.</default>
+                    </switch>
+                    <else>shuddering and shaking with pleasure.</else>
+                </if>
+                The dullahan watches your orgasm with a dumbfounded smile, amazed at her own ability to fuck something raw.
+
+                After the ecstasy of climax fades, you groan in discomfort over the object stuffed in your <if test="$anal" then="ass" else="cunt"/>.
+                She doesn't respond, so you groan harder.
+                <i>"Oh! Right, sorry."</i>
+                She slowly pulls the dildo out<if test="$anal">, and it exits your ass with a pop</if>.
+                You exhale in relief.
+                <i>"I think I'm pretty good at this!"</i> she says, still beaming with delight as she toys with her cock.
+                You agree, panting with exhaustion.
+                The two of you spend some time resting before you get up and gather your things.
+                After everything is accounted for, you turn to her ask her for your strap-on.
+                <i>"Ah, shame. Here."</i> she unbuckles the harness and pulls her end of the dildo from her pussy.
+                It's absolutely drenched with her girl-cum, same for her thighs.
+                <i>"Wouldn't mind doing this again! I think I could get used to fucking stuff."</i>
+                You say your goodbyes, and head back to camp.
+                On the way, you notice that the demonic strap-on never ejaculated.
+                Maybe it doesn't work on, well, the undead?
+            </text>
+
+            <text name="thighjob">
+                You look at her rather thick and toned legs, dressed in black thigh high boots and covered by her white skirt, and suggest that there's a way to make a compromise.
+
+                <i>"Hm? Oh! Yeah, that sounds interesting!"</i> She says, removing her boots. You tell her to keep the thigh highs. She gives you a mischievous look and blushes a little more in response. You begin <if test="player.isClothedLower()" then="stripping off your [armor]" else="stroking your [cock]"/> as she seductively saunters towards you. She doesn't display it often, but he has a gorgeous body; her assets aren't as extreme as the ones from some of the other people and creatures you've encountered, but she's well proportioned, with her E-cup breasts maching her hips perfectly in width, and her toned waist being thin enough to give her somewhat of an hourglass figure. As a finishing touch, her thighs, wide and long as they are, still make a "gap" where they touch.
+
+                She suddenly closes the gap between the two of you, wraps her hands around your hips, and pulls you tightly next to her. Her face and black-gold eyes show an honest lust that you didn't know she could display. Feeling her perfect body hugging so tightly to yours quickly springs [eachCock] into attention.
+                <if test="player.cocks.length eq 1" then="It slides" else="They slide"/> under the dullahan's legs, barely touching her moist lips with each excited throb.
+
+                You seriously consider ignoring her restrictions and just plunging yourself inside her immediately, but that thought vanishes when she clamps down her thighs tightly and begins moving back and forth, slowly. The sensation is a bit harsh due to the lack of lubrication, but after a few thrusts, her cold girl-lube and your own precum soak her thighs, and you slide freely, feeling her perfectly hard flesh and the texture of her thigh highs tease the length of your [eachCock]. It's at once delightfully soft and suitably coarse; the mix of sensations is truly incredible.
+                She softly kisses your neck and gropes your back and butt as she thrusts faster and faster, only enhancing the feelings.
+
+                <if test="$longcock">
+                    The thrusting speeds up, but you notice an unpleasant breeze every time you finish sliding through her thighs. The forest air is truly cold at this time of the night, so much that even the normally cool dullahan feels positively warm. As if reading your mind, she starts smiling and nods.
+
+                    She stops hugging you and detaches her head from her torso. She then holds it behind her. The reason for that is unknown to you until you thrust deep again. Instead of feeling the cold breeze, you feel the inside of a mouth, and a slimy tongue licking your [cockHead]. The feeling is truly sublime. You couldn't do this with any normal woman!
+                </if>
+
+                You use your own arms to hug the dullahan tightly, and begin thrusting upwards, teasing her clit and lips and kissing her asshole with every movement. She begins moaning and squirming even tighter around your cock, squirting more and more girl cum on your [cocks]. You start throbbing harder and thrusting unevenly, incapable of dealing with the pleasure.
+
+                It finally overwhelms you, and you ejaculate while sliding inside her thighs
+                <switch value="player.cumQ()">
+                    <case lte="100"> staining her thigh highs and skirt with your seed</case>
+                    <case lte="500"> splattering her clothes with your plentiful seed in every thrust</case>
+                    <default> absolutely drenching her clothes and legs with your cum</default>
+                </switch>
+                <if test="$longcock"> and getting some of it on the dullahan's face as well</if>.
+                After a few impotent thrusts, your orgasm finally comes to an end. You pull yourself from her, the mixed juices from your [cocks] and her pussy making several slimy strings between you and her.
+                <if test="$longcock">She reattaches her head to her shoulders.</if>
+                You notice she hasn't orgasmed, and she's panting deeply. It's evident she's more aroused than ever.
+
+                You ask her if she wants you to help her out, but she denies.
+
+                <i>"Oh, trust me. I'm going to have <b>a lot</b> of fun with this later"</i> She says, stroking her pussylips from behind, dripping girl cum.<i>That was so much fun! I didn't think I could make someone cum just using my thighs like that.
+
+                Now, well - saying this is silly after what we've just done - but I'd like some privacy. Come again soon!</i>
+
+                She steps back slowly and awkwardly, and then rushes to her steed. She mounts it and rushes to somewhere more private. Well, you got what you wanted out of this sparring match.
+            </text>
+
+            <text name="tentacles">
+                You ask her if she's willing to try something very different. She looks around, thinking. <i>What do you have in mind? What's so "very" different?</i>"
+
+                <if test="player.isClothedLower()">
+                    You strip off your [armor] showing her your bundle of writhing tentacle-like cocks.
+                    <else>
+                        You point to your bundle of writhing tentacle-like cocks, as if she couldn't notice it.
+                    </else>
+                </if>
+                You touch each of them for a moment and they wake up, turning purple and red, becoming covered with moisture as they search blindly for something to rub against.
+
+                <i>Man, just when I thought I had experienced a lot from the world. I've never seen these things outside of those tentacle beasts!</i>
+                She says, a bit horrified.
+                <i>I'm not sure if this will work out, [name].</i>
+                The undead woman lets out a high pitched "Yeep!" as she feels something slide under her skirt and rub around her ass, leaving a trail of pre on her cheeks.
+                She turns around and grabs it, pulling it from under her.
+                She brings it to her face and analyzes it more closely <i>"Wha- when did that end up there? How do you control these like that?"</i>
+                She asks, dissecting the mushroom-like head and bulbous, sinuous shaft with her eyes.You shrug. You just do.
+
+                By now, you notice that her blue face is distinctively purple around her cheeks.
+                She stares at the widening cockhead with increasing lust, breathing faster as a bead of pre forms over the tip.
+                <i>"Well. I-, you know. This-"</i> She stops talking.
+
+                She swallows in preparation, and gently licks the invading cock that's still struggling in her hand.
+                She gets a quick burst of pre on her face as a reward, but that only motivates her to continue.
+                She opens her mouth and swallows the flared cockhead, eliciting a faint moan from you.
+                She starts sucking eagerly, picking up the pace as she gets more and more overwhelmed by lust.
+                She closes her eyes, and you see your opportunity to strike.
+
+                She opens her eyes and jerks in surprise as a tentacle slithers upwards around one of her legs.
+                She looks down, with a cock still in her mouth, and looks at you, questioning.
+                You open a smug smile as another cock coils around her abdomen and lifts her into the air, eliciting a muffled scream from her.
+
+                She pulls the first cock out, now several inches inside her depthless throat, and screams at you while waving around in the air.
+                <i>"[name]! Get me down from here right now! This is not f-"</i> she breaks her complaints with a lusty moan, opening her mouth, as one adventurous tentacle begins rubbing her clit.
+                The cock in her hand sees the opportunity and promptly stuffs himself inside her mouth again.
+
+                You effort has an effect, however, and her struggles lose strength as she begins enjoying the unnatural fucking she's receiving.
+                One tentacle slithers under her corset, pushing towards her breasts and enveloping them.
+                With a squeeze and a gentle rubbing of her nipples, she finally begins enjoying her situation to its fullest, declaring her own defeat with a squirt of girl cum and a loud moan.
+
+                She closes her powerful legs tightly to trap the tentacle working on her lower lips and begins thrusting, grinding on the cockhead with her pussy as the tentacle does the same to her.
+                It takes every once in your being to not plunge yourself into her depths, but, shivering, you keep focus and keep teasing her button.
+                Meanwhile, she sucks diligently on your first cock, occasionally pulling it out from the depths of her infinite throat to lick and kiss its head.
+
+                <if test="$count gt 4">
+                    One slower, more reluctant cock finally makes its way towards her, and shyly pokes on her cheek, looking for attention. Covered in a haze of lust, she turns a half-lidded gaze towards the extra cock. She moans once again and stretches her free arm to grab it. She pulls the cock inside her mouth out once again, and begins working her lips over the recent one. To keep things fair, she alternates her attention between the two, getting rewarded with hefty bursts of pre every time she caresses one of them.
+                </if>
+
+                <if test="player.hasVagina()">
+
+                    <if test="$count le 5">
+                        As your multitude of cocks work their magic on the undead girl, you plunge a few fingers on your own wet, aching cunt.
+                        You wish you had another tentacle cock, just so you could fuck yourself while watching this obscenely erotic sight!
+                    </if>
+                    <if test="$count gt 5">
+                        You own cunt is tingling with need, engorged with blood and overwhelmed with desire by this obscenely erotic sight.
+                        Seeing as you have an extra cock available, you move it towards your own lips, and swiftly begin fucking yourself, relishing in the pleasure of the dullahan's body and your own pussy.
+                    </if>
+                </if>
+
+                Her body is now covered in slimy pre-cum, and you can barely stand, the pleasure from the group of cocks tasting that toned body being too much for any creature to withstand.
+                Feeling your impending orgasm, you make an effort to lower her down to the ground gently.
+                As soon as her pre-covered body touches the ground, you point all your cocks towards her and ejaculate with a loud groan.
+
+                <switch value="player.cumQ()">
+                    <case lte="100">
+                        Each cock covers her body with a few strings of cum.
+                        Still overwhelmed with pleasure, the dullahan spreads the jizz around her body with her hands, using it as lubrication to tease her nipples and pussy lips more easily.
+                    </case>
+                    <case lte="500">
+                        Each cock paints her toned body and clothes with cum.
+                        Still overwhelmed with pleasure, the dullahan spreads the jizz around her body with her hands, using it as lubrication to tease her nipples and pussy lips more easily.
+                    </case>
+                    <default>
+                        Each cock absolutely drenches her toned body with cum.
+                        She writhes on the resulting pool of slime happily, drunk with pleasure, thrusting her hips and tweaking her hard nipples.
+                    </default>
+                </switch>
+                <if test="player.hasVagina() and $count gt 5">
+
+                    The cock inside you also orgasms, and your [vagina] happily squeezes every bit of cum it has to offer.
+                </if>
+                You fall to the ground, overwhelmed by the force of so many orgasms simultaneously. The dullahan recover her senses and lazily crawls towards you. She hugs and softly kisses you before falling asleep.
+                <if test="player.lib + player.cor gt 60">
+                    You're way past caring about snuggling with someone that's covered head to toe in semen.
+                    <else>
+                        Snuggling with someone so thoroughly drenched in semen is a bit complicated, but, tired as you are, it doesn't take long for you to fall asleep.
+                    </else>
+                </if>
+
+                Not a bad night, all things considered.
+            </text>
+        </lib>
+    </lib>
+</extend-story>
