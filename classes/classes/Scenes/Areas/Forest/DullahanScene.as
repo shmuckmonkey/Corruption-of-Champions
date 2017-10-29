@@ -248,11 +248,11 @@ public class DullahanScene extends BaseContent implements Encounter
 
 		public function dullOhYouFuckedUpPT2():void {
 			clearOutput();
-			if (player.lib >= 80 && player.tou >= 95 && player.HP - 700 > 0){
+			if (player.lib + player.tou >= 250 && player.HP > 7000){
 				story.display("scenes/sex/rape-survived");
 				outputText("");
-				dynStats("str", -15, "tou", -15, "spe", -15);
-				player.takeDamage(700);
+				dynStats("str", -45, "tou", -45, "spe", -45);
+				player.takeDamage(7000);
 				wasRude = 2;
 				doNext(camp.returnToCampUseFourHours);
 			} else{
