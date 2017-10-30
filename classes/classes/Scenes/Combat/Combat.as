@@ -2,6 +2,7 @@
 import classes.BaseContent;
 import classes.BodyParts.Skin;
 import classes.CoC_Settings;
+import classes.Creature;
 import classes.GlobalFlags.kACHIEVEMENTS;
 import classes.GlobalFlags.kFLAGS;
 import classes.GlobalFlags.kGAMECLASS;
@@ -3076,12 +3077,15 @@ public function combatMiss():Boolean {
 	return player.spe - monster.spe > 0 && int(Math.random() * (((player.spe - monster.spe) / 4) + 80)) > 80;
 }
 public function combatParry():Boolean {
+	return combatParry2(monster,player);
+}
+public function combatParry2(attacker:Creature,defender:Creature):Boolean {
 	var parryChance:int = 0;
-	if (player.findPerk(PerkLib.Parry) >= 0 && player.spe >= 50 && player.str >= 50 && player.weapon != WeaponLib.FISTS) {
-		if (player.spe <= 100) parryChance += (player.spe - 50) / 5;
+	if (defender.findPerk(PerkLib.Parry) >= 0 && defender.spe >= 50 && defender.str >= 50 && defender.weaponName != WeaponLib.FISTS.name) {
+		if (defender.spe <= 100) parryChance += (defender.spe - 50) / 5;
 		else parryChance += 10;
 	}
-	if (player.findPerk(PerkLib.CatchTheBlade) >= 0 && player.spe >= 50 && player.shieldName == "nothing" && player.isFistOrFistWeapon()) parryChance += 15;
+	if (defender.findPerk(PerkLib.CatchTheBlade) >= 0 && defender.spe >= 50 && defender.shieldName == "nothing" && defender.isFistOrFistWeapon()) parryChance += 15;
 	return rand(100) <= parryChance;
 //	trace("Parried!");
 }
@@ -3096,28 +3100,50 @@ public function combatCritical():Boolean {
 }
 
 public function combatBlock(doFatigue:Boolean = false):Boolean {
+	return combatBlock2(monster,player,doFatigue);
+}
+public function combatBlock2(attacker:Creature,defender:Creature,doFatigue:Boolean = false):Boolean {
 	//Set chance
-	var blockChance:int = 20 + player.shieldBlock + Math.floor((player.str - monster.str) / 5);
-	if (player.findPerk(PerkLib.ShieldMastery) >= 0 && player.tou >= 50) {
-		if (player.tou < 100) blockChance += (player.tou - 50) / 5;
+	var blockChance:int = 20 + defender.shieldBlock + Math.floor((defender.str - attacker.str) / 5);
+	if (defender.hasPerk(PerkLib.ShieldMastery) && defender.tou >= 50) {
+		if (defender.tou < 100) blockChance += (defender.tou - 50) / 5;
 		else blockChance += 10;
 	}
-	if (player.findPerk(PerkLib.ShieldGrandmastery) >= 0 && player.tou >= 100) {
-		if (player.tou < 150) blockChance += (player.tou - 100) / 5;
+	if (defender.hasPerk(PerkLib.ShieldGrandmastery) && defender.tou >= 100) {
+		if (defender.tou < 150) blockChance += (defender.tou - 100) / 5;
 		else blockChance += 10;
 	}
 	if (blockChance < 10) blockChance = 10;
 	//Fatigue limit
-	var fatigueLimit:int = player.maxFatigue() - physicalCost(10);
-	if (blockChance >= (rand(100) + 1) && player.fatigue <= fatigueLimit && player.shieldName != "nothing") {
+	var fatigueLimit:int = defender.maxFatigue() - physicalCost(10);
+	if (blockChance >= (rand(100) + 1) && defender.fatigue <= fatigueLimit && defender.shieldName != "nothing") {
 		if (doFatigue) {
-			if (player.findPerk(PerkLib.ShieldGrandmastery) >= 0 && player.tou >= 100) fatigue(5);
+			if (defender.hasPerk(PerkLib.ShieldGrandmastery) && defender.tou >= 100) fatigue(5);
 			else fatigue(10);
 		}
 		return true;
 	}
 	else return false;
 }
+	/**
+	 * returns an object that tells you all you need to know about if a defender avoided an attack. Attacks are only parried if they're not dodged, and only blocked if they're not parried.
+	 * @param doDodge whether or not dodge should be possible.
+	 * @param toHitChance chance to hit. If not set, standardDodgeFunction will be used.
+	 * @param doParry whether or not parry should be possible.
+	 * @param doBlock whether or not blocking should be possible. Enemies cannot block, but they can parry.
+	 * @param doFatigue if block is possible, whether or not doing so will drain fatigue.
+	 * @returns {dodge:EVASION_xxx, parry:boolean, block:boolean, failed:boolean}
+	 */
+	public function combatAvoidDamage(attacker:Creature, defender:Creature, doDodge:Boolean = true, doParry:Boolean = true, doBlock:Boolean = true, doFatigue:Boolean = false):Object{
+		var defenderReaction:Object = {dodge:null, parry:false, block:false, failed:true};
+		if (doDodge) defenderReaction.dodge = defender.getEvasionReason2(attacker.spe);
+		if (defenderReaction.dodge == null){
+			if (doParry) defenderReaction.parry = combatParry();
+			if (defenderReaction.parry == false && doBlock) defenderReaction.block = combatBlock2(attacker,defender,doFatigue);
+		}
+		defenderReaction.failed = !defenderReaction.parry && !defenderReaction.block && (defenderReaction.dodge == null);
+		return defenderReaction;
+	}
 public function isWieldingRangedWeapon():Boolean {
 	if (player.weaponName.indexOf("staff") != -1 && player.findPerk(PerkLib.StaffChanneling) >= 0) return true;
 	else return false;

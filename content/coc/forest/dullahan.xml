@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <extend-story name="/forest/dullahan" xmlns="xxc-story">
     <lib name="combat">
+        <text name="battleDescript1">
+            Racing across the battlefield on a black horse is a cloaked knight. You can't make out any of its features, though it is obviously humanoid. It wields a massive scythe which, combined with its fast steed makes for a terrifyingly effective opponent. You can't see its face, but whenever you look at where it should be, a shiver runs down your spine.
+        </text>
         <text name="phase2">
             You deal a final strike to the knight. It charges past you, clearly unbalanced and in pain from its wounds.<i>"You cannot defeat me! I am the Harbinger of <b>Death!</b>"</i> it screams, looking at you, scythe held aloft.
 
@@ -10,21 +13,55 @@
 
             You're speechless, but you take the opportunity to properly discern your resilient opponent. It's a woman, judging by the breasts, voice and long white, flowing hair. Her skin is pale blue, and her eyes are curiously black, with golden pupils.<i>"You're going to pay for knocking me off my horse like that!"</i>, she says, unsheathing a cavalry saber and changing into a fencing position. <b>You're facing a Dullahan!</b>
         </text>
-        <lib name="moves">
-
-            <lib name="embrace">
-                <text name="hit">
-                    <!--Diva suddenly dives and closes her wings and arms on you, locking you in an embrace!
-                    <if test="silly()">Bad touch, bad touch!</if>-->
-                </text>
-                <text name="miss">
-                    <!--Diva suddenly dives and attempt to closes her wings and arms on you but you're faster than her and swiftly evade the grapple.-->
-                </text>
-            </lib>
-        </lib>
         <text name="battleDescript2">
             Before you stands a female knight. She looks mostly human, aside from her skin, which is pale blue, and eyes, which are black, with golden pupils. Her neat hair is very long, reaching up to her thighs. She wears what amounts to an armored corset; her breasts are barely covered by tight leather. While her forearm, abdomen and calves are covered in black steel plates, she's wearing thigh-highs and a plain white skirt that barely covers her legs. Over her armor, she wears a needlessly long cloak that wraps around her neck like a scarf. She has a cold but determined look to her, and her stance shows she has fencing experience.
         </text>
+        <lib name="moves">
+            <lib name="charge">
+                <text name="start">
+
+                    The dark knight begins charging at you, fearsome scythe outstretched!
+                </text>
+                <text name="approach">
+
+                    The dark knight approaches quickly! With this speed, its attack will be devastating!
+                    <if test="player.inte gt 50">
+
+                        Preparing to dodge is probably a good idea.
+                    </if>
+                </text>
+                <text name="attack">
+                    Now within reach, the knight swings its scythe in a wide arc with a devastating attack!
+                </text>
+                <text name="evade">
+
+                    You anticipate the swing, dodging its thanks to your incredible evasive ability!
+                </text>
+                <text name="flexibility">
+
+                    You use your incredible flexibility to barely fold your body and avoid its attack!
+                </text>
+                <text name="misdirection">
+
+                    You use technique from Raphael to sidestep and completely avoid its attack!
+                </text>
+                <text name="blind">
+
+                    The knight misses you, too blinded for an accurate attack.
+                </text>
+                <text name="miss">
+
+                    You successfully dodge its fearsome charge!
+                </text>
+                <text name="hit">
+
+                    The long curved scythe hits you, tearing your flesh and dealing a tremendous amount of damage.
+                </text>
+                <text name="waited">
+                    Taking your time to prepare to dodge, you swiftly roll out of the way as soon as the knight begins its attack. The scythe merely scratches you, and the knight continues to gallop forward.
+                </text>
+            </lib>
+        </lib>
     </lib>
     <lib name="scenes">
         <lib name="intro">

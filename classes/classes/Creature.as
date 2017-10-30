@@ -11,7 +11,8 @@ package classes
 	import classes.BodyParts.UnderBody;
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.GlobalFlags.kFLAGS;
-	import classes.PerkType;
+import classes.Items.ArmorLib;
+import classes.PerkType;
 	import classes.StatusEffectType;
 	import classes.Items.JewelryLib;
 import classes.StatusEffects.Combat.CombatInteBuff;
@@ -3816,39 +3817,48 @@ import classes.internals.Utils;
 		public const EVASION_UNHINDERED:String = "Unhindered";
 		public const EVASION_ILLUSION:String = "Illusion";
 		public const EVASION_FLYING:String = "Flying";
+		public const EVASION_HURRICANE_DANCE:String = "Hurricane Dance";
+		public const EVASION_BLADE_DANCE:String = "Blade Dance";
 
-		/**
+		/* (old desc)
 	    * Try to avoid and @return a reason if successfull or null if failed to evade.
 		*
 		* If attacker is null then you can specify attack speed for enviromental and non-combat cases. If no speed and attacker specified and then only perks would be accounted.
 		*
 		* This does NOT account blind!
 	    */
-		public function getEvasionReason(useMonster:Boolean = true, attackSpeed:int = int.MIN_VALUE):String
+
+		public function getEvasionReason():String {
+			return getEvasionReason2(game.monster.spe);
+		}
+		/**
+		 * Performs an evasion check vs attack of speed (attackSpeed) and returns reason )
+		 */
+		public function getEvasionReason2(attackSpeed:int = int.MIN_VALUE):String
 		{
 			// speed
-			if (useMonster && game.monster != null && attackSpeed == int.MIN_VALUE) attackSpeed = game.monster.spe;
-			if (attackSpeed != int.MIN_VALUE && spe - attackSpeed > 0 && int(Math.random() * (((spe - attackSpeed) / 4) + 80)) > 80) return "Speed";
+			if (attackSpeed != int.MIN_VALUE && spe - attackSpeed > 0 && int(Math.random() * (((spe - attackSpeed) / 4) + 80)) > 80) return EVASION_SPEED;
 			//note, Player.speedDodge is still used, since this function can't return how close it was
 
 			var roll:Number = rand(100);
 
 			// perks
-			if (findPerk(PerkLib.Evade) >= 0 && (roll < 10))
-			return "Evade";
-			if (findPerk(PerkLib.Flexibility) >= 0 && (roll < 6)) return "Flexibility";
-			if (findPerk(PerkLib.Misdirection) >= 0 && armorName == "red, high-society bodysuit" && (roll < 10)) return "Misdirection";
-			if (findPerk(PerkLib.Unhindered) >= 0 && (armorName == "arcane bangles" || armorName == "practically indecent steel armor" || armorName == "revealing chainmail bikini" || armorName == "slutty swimwear" || armorName == "barely-decent bondage straps" || armorName == "nothing") && (roll < 10)) return "Unhindered";
-			if (hasStatusEffect(StatusEffects.Illusion) && (roll < 10)) return "Illusion";
-			if (hasStatusEffect(StatusEffects.Flying) && (roll < 20)) return "Flying";
-			if (hasStatusEffect(StatusEffects.HurricaneDance) && (roll < 25)) return "Hurricane Dance";
-			if (hasStatusEffect(StatusEffects.BladeDance) && (roll < 30)) return "Blade Dance";
+			if (findPerk(PerkLib.Evade) >= 0 && (roll < 10)) return EVASION_EVADE;
+			if (findPerk(PerkLib.Flexibility) >= 0 && (roll < 6)) return EVASION_FLEXIBILITY;
+			if (findPerk(PerkLib.Misdirection) >= 0 && armorName == game.armors.R_BDYST.name && (roll < 10)) return EVASION_MISDIRECTION;
+			if (findPerk(PerkLib.Unhindered) >= 0
+				&& (armorName == "arcane bangles" || armorName == "practically indecent steel armor" || armorName == "revealing chainmail bikini" || armorName == "slutty swimwear" || armorName == "barely-decent bondage straps" || armorName == "nothing") && (roll < 10)) return EVASION_UNHINDERED;
+			if (hasStatusEffect(StatusEffects.Illusion) && (roll < 10)) return EVASION_ILLUSION;
+			if (hasStatusEffect(StatusEffects.Flying) && (roll < 20)) return EVASION_FLYING;
+			if (hasStatusEffect(StatusEffects.HurricaneDance) && (roll < 25)) return EVASION_HURRICANE_DANCE;
+			if (hasStatusEffect(StatusEffects.BladeDance) && (roll < 30)) return EVASION_BLADE_DANCE;
 			return null;
 		}
 
 		public function getEvasionRoll(useMonster:Boolean = true, attackSpeed:int = int.MIN_VALUE):Boolean
 		{
-			return getEvasionReason(useMonster, attackSpeed) != null;
+			if (useMonster && game.monster != null) attackSpeed = game.monster.spe;
+			return getEvasionReason2(attackSpeed) != null;
 		}
 
 		public function get vagorass():IOrifice {

@@ -2,12 +2,14 @@ package classes.Scenes.Areas.Forest
 {
 	import classes.*;
 	import classes.internals.WeightedDrop;
-	
-	public class Dullahan extends Monster
+
+import coc.xxc.BoundStory;
+
+public class Dullahan extends Monster
 	{
 		private var scene:DullahanScene = game.forest.dullahanScene;
 		public var determined:Number = 0;
-		
+		private var story:BoundStory;
 		
 		override public function won(hpVictory:Boolean, pcCameWorms:Boolean):void {
 			if (scene.wasRude == 2) scene.dullahanFinishesYouOff();
@@ -36,10 +38,11 @@ package classes.Scenes.Areas.Forest
 		
 		public function Dullahan() 
 		{
+			this.story = game.forest.dullahanScene.story.locate("combat");
 			this.a = "a ";
 			this.short = "Dullahan";
 			this.imageName = "dullahan";
-			this.long = "Before you stands a female knight. She looks mostly human, aside from her skin, which is pale blue, and eyes, which are black, with golden pupils. Her neat hair is very long, reaching up to her thighs. She wears what amounts to an armored corset; her breasts are barely covered by tight leather. While her forearm, abdomen and calves are covered in black steel plates, she's wearing thigh-highs and a plain white skirt that barely covers her legs. Over her armor, she wears a needlessly long cloak that wraps around her neck like a scarf. She has a cold but determined look to her, and her stance shows she has fencing experience.";
+			this.long = this.story.render("battleDescript2");
 			// this.plural = false;
 			this.createVagina(false, 1, 1);
 			createBreastRow(Appearance.breastCupInverse("E"));

@@ -45,7 +45,7 @@ public class TextStmt extends Statement {
 
 	override public function execute(context:ExecContext):void {
 		context.debug(this,'print');
-		(context as StoryContext).game.outputText(content);
+		(context as StoryContext).outputText(content);
 	}
 
 	public function toString():String {

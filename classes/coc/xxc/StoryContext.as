@@ -13,6 +13,8 @@ import coc.xlogic.ExecContext;
 
 public class StoryContext extends ExecContext{
 	public var game:CoC;
+	public var silent:Boolean = false;
+	public var text:String = "";
 	public function StoryContext(game:CoC) {
 		super([
 			game,
@@ -27,6 +29,13 @@ public class StoryContext extends ExecContext{
 			}
 		]);
 		this.game = game;
+	}
+	public function outputText(s:String):void {
+		if (silent) {
+			this.text += s;
+		} else {
+			this.game.outputText(s);
+		}
 	}
 }
 }

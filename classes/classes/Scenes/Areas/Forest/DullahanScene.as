@@ -12,7 +12,7 @@ import coc.xxc.BoundStory;
 
 // TODO @aimozg Missing: Manor dungeon
 // TODO @aimozg Missing: Counter Perk
-// TODO @aimozg Missing: DullahanHorse Monster
+// TODO @aimozg Missing: DullahanHorse Monster: not attackable unless within reach
 // TODO @aimozg Missing: Dullahan Monster
 // TODO @aimozg Missing: Dullahan Scythe item
 // TODO @aimozg Missing: Power-up B.Sword if she is killed
@@ -173,7 +173,8 @@ public class DullahanScene extends BaseContent implements Encounter
 				addButton(5, "Future", dullahanFuture).hint("Ask her about her plans, now that the Necromancer is dead.");
 				addButton(6, "Curse", dullahanCurse).hint("Ask her about her curse, how she acquired it, and how to remove it.");
 			}
-//			if (timesWonSpar >= 3 && !player.hasPerk(PerkLib.CounterAB)) addButton(6, "Her skills", learnSkill).hint("Ask her about her unique fighting stance."); TODO
+			if (timesWonSpar >= 3) addButtonDisabled(6, "Her skills", "Ask her about her unique fighting stance.\n\n<b>Sorry, not yet in game!</b>");
+			// if (timesWonSpar >= 3 && !player.hasPerk(PerkLib.CounterAB)) addButton(6, "Her skills", learnSkill).hint("Ask her about her unique fighting stance."); TODO
 			addButton(13, "Leave", dullLeave).hint("Say goodbye and leave.");
 		}
 		
@@ -207,34 +208,40 @@ public class DullahanScene extends BaseContent implements Encounter
 			if (lust >= 33 && player.lust > 33 && questStage == 3) {
 				if (!player.isTaur()) {
 					story.display("scenes/sex/accept", {$knows: hasReadEpharimJournalPage(2)});
-					if (player.hasCock()) {
-						addButton(0, "Thighjob", dullThighjob)
-								.hint("Thigh-highs and toned legs. You can make that work.");
-						addButton(1, "Blowjob", dullBlowjobTease).hint("Blowjob? Can't go wrong with the classics.");
-					}
-					if (player.hasVagina()) addButton(2, "Cunnilingus", dullahanCunnilingus2)
-							.hint("That's an unnecessary warning for you.");
-					if (player.hasKeyItem("Demonic Strap-On")) addButton(3, "Strap-on", dullahanStrapOn)
-							.hint("She can't take, but maybe she can give?");
-					if (player.countCocksOfType(CockTypesEnum.TENTACLE) >= 4) addButton(4, "Tentacle Fun", dullTentacleFun)
-							.hint("Have some tentacle fun with her.");
+					addButton(0, "Thighjob", dullThighjob)
+							.hint("Thigh-highs and toned legs. You can make that work.")
+							.disableIf(!player.hasCock());
+					addButton(1, "Blowjob", dullBlowjobTease)
+							.hint("Blowjob? Can't go wrong with the classics.")
+							.disableIf(!player.hasCock());
+					addButton(2, "Cunnilingus", dullahanCunnilingus2)
+							.hint("That's an unnecessary warning for you.")
+							.disableIf(!player.hasVagina());
+					addButton(3, "Strap-on", dullahanStrapOn)
+							.hint("She can't take, but maybe she can give?")
+							.disableIf(!player.hasKeyItem("Demonic Strap-On"));
+					addButton(4, "Tentacle Fun", dullTentacleFun)
+							.hint("Have some tentacle fun with her.")
+							.disableIf(player.countCocksOfType(CockTypesEnum.TENTACLE) >= 4);
 				} else {
-					if (player.countCocksOfType(CockTypesEnum.TENTACLE) >= 4) addButton(0, "Tentacle Fun", dullTentacleFun)
+					addButton(0, "Tentacle Fun", dullTentacleFun)
 							.hint("Have some tentacle fun with her.");
-					else {
+					if (player.countCocksOfType(CockTypesEnum.TENTACLE) < 4) {
+						button(0).disable();
 						story.display("scenes/sex/notaur");
 					}
-					if (canrape) addButton(1, "Rape", dullOhYouFuckedUp)
-							.hint("You're not getting out of here without sex.");
+					addButton(1, "Rape", dullOhYouFuckedUp)
+							.hint("You're not getting out of here without sex.")
+							.disableIf(!canrape);
 					addButton(2, "Nah.", dullSexRefused).hint("Well, time to head back to camp, then.", null);
 				}
 			} else {
 				story.display("scenes/sex/decline", {$canrape: canrape});
-				addButton(2, "...Nah", dullMenu).hint("You just can't be bothered right now.");
-				if (canrape) {
-					outputText("");
-					addButton(5, "Rape", dullOhYouFuckedUp).hint("Take her by force. <b>This is a bad idea.</b>");
-				}
+				addButton(2, "...Nah", dullMenu)
+						.hint("You just can't be bothered right now.");
+				addButton(5, "Rape", dullOhYouFuckedUp)
+						.hint("Take her by force. <b>This is a bad idea.</b>")
+						.disableIf(!canrape);
 			}
 			flushOutputTextToGUI();
 		}
@@ -541,7 +548,7 @@ public class DullahanScene extends BaseContent implements Encounter
 			doNext(camp.returnToCampUseTwoHours);
 		}
 		
-		private var story:BoundStory;
+		public var story:BoundStory;
 		public function DullahanScene() 
 		{
 			onGameInit(init);

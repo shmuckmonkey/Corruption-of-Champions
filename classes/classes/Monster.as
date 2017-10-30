@@ -64,8 +64,11 @@
 		protected final function combatParry():Boolean {
 			return game.combat.combatParry();
 		}
+		protected final function combatAvoidDamage(doDodge:Boolean = true, doParry:Boolean = true, doBlock:Boolean = true, doFatigue:Boolean = false):Object{
+			return game.combat.combatAvoidDamage(this, player, doDodge, doParry, doBlock, doFatigue);
+		}
 		protected final function combatBlock(doFatigue:Boolean = false):Boolean {
-			return game.combat.combatBlock(doFatigue);
+			return game.combat.combatBlock2(this,player,doFatigue);
 		}
 		protected function get consumables():ConsumableLib{
 			return game.consumables;
@@ -1134,7 +1137,7 @@
 				outputPlayerDodged(dodge);
 				return true;
 			}
-			var evasionResult:String = player.getEvasionReason(false); // use separate function for speed dodge for expanded dodge description
+			var evasionResult:String = player.getEvasionReason2(); // use separate function for speed dodge for expanded dodge description
 			//Determine if evaded
 			if (evasionResult == EVASION_EVADE) {
 				outputText("Using your skills at evading attacks, you anticipate and sidestep " + a + short + "'");
