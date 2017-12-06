@@ -88,6 +88,7 @@ package classes.internals
 		public static function extend(dest:Object, src:Object, ...srcRest:Array):Object {
 			srcRest.unshift(src);
 			for each(src in srcRest) {
+				if (!src) continue;
 				for (var k:String in src) {
 					if (src.hasOwnProperty(k)) dest[k] = src[k];
 				}

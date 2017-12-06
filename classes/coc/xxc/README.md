@@ -125,19 +125,19 @@ Outputs its content, processing whitespace __in XML text during compilation__ (i
 
 This _story_ is saved in the outer text block as `name`.
 
-##### <string>
+##### &lt;string&gt;
 
 As `<text>` but no whitespace processing is done.
 
-##### <lib>
+##### &lt;lib&gt;
 
 Used for grouping. Can only contain named display elements 
 
-##### <macro>
+##### &lt;macro&gt;
 
 Skipped when iterated from outer element, but can be displayed by name
 
-##### <story>
+##### &lt;story&gt;
 
 Same as `<text>`  
 
@@ -148,7 +148,7 @@ display = element display {
     attribute ref { text }
 }
 ```
-Locates 
+Locates story (absolutely or relatively) and executes (displays) it.
 
 #### output
 
@@ -167,6 +167,20 @@ TODO
 #### dynStats
 
 TODO
+
+#### menu
+
+```relax-ng
+menu = element menu {
+    (content|button)*
+}
+button = element button {
+    attribute label { text },
+    (attribute call { text } | attribute goto { text } | content*),
+    (attribute disableIf { text } | attribute enableIf { text }),
+    attribute pos { text }?
+}
+```
 
 ### Structure elements
 

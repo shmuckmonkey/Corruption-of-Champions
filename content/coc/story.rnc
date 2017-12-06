@@ -48,13 +48,14 @@ font = element font {
 xcc-named-content = Text | String | lib | story | macro | extend-story | zone | extend-zone
 xcc-content = xcc-named-content
     | display | dynStats | output | Include
+    | menu
     | set
 namedBlock = attribute name { text }?, content*
 Text = element text { namedBlock }
 String = element string { namedBlock }
 lib = element lib {
-	attribute name { text },
-	xcc-named-content*
+    attribute name { text },
+    xcc-named-content*
 }
 story = element story { namedBlock }
 macro = element macro { namedBlock }
@@ -100,4 +101,14 @@ Include = element include {
     attribute path { text },
     attribute required { "true" | "false" }?,
     empty
+}
+menu = element menu {
+    (attribute backfn { text } | attribute back { text } )?,
+    (content|button)*
+}
+button = element button {
+    attribute label { text },
+    (attribute call { text } | attribute goto { text } | content*),
+    (attribute disableIf { text } | attribute enableIf { text }),
+    attribute pos { text }?
 }

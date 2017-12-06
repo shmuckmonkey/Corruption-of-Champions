@@ -174,4 +174,25 @@
             </xs:attribute>
         </xs:complexType>
     </xs:element>
+    <xs:element name="menu" substitutionGroup="ns1:xcc-content">
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="ns1:content"/>
+                <xs:element ref="ns1:button"/>
+            </xs:choice>
+            <xs:attribute name="backfn"/>
+            <xs:attribute name="back"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="button">
+        <xs:complexType mixed="true">
+            <xs:group minOccurs="0" maxOccurs="unbounded" ref="ns1:content"/>
+            <xs:attribute name="label" use="required"/>
+            <xs:attribute name="call"/>
+            <xs:attribute name="goto"/>
+            <xs:attribute name="disableIf"/>
+            <xs:attribute name="enableIf"/>
+            <xs:attribute name="pos"/>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>

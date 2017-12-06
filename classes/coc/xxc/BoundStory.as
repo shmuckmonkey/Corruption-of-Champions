@@ -6,13 +6,13 @@ import coc.xlogic.ExecContext;
 
 public class BoundStory {
 	private var story:Story;
-	private var context:ExecContext;
-	public function BoundStory(story:Story, context:ExecContext) {
+	private var context:StoryContext;
+	public function BoundStory(story:Story, context:StoryContext) {
 		this.story = story;
 		this.context = context;
 	}
 	public function execute():void {
-		story.execute(context);
+		context.execute(story);
 	}
 	public function display(ref:String,locals:Object=null):void {
 		var obj:Story = story.locate(ref);
@@ -21,7 +21,7 @@ public class BoundStory {
 			return;
 		}
 		context.pushScope(locals||{});
-		obj.forceExecute(context);
+		context.forceExecute(obj);
 		context.popScope();
 	}
 	public function locate(ref:String):BoundStory {

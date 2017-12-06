@@ -75,6 +75,10 @@ public class StoryCompiler extends Compiler {
 				return compileStoryBody(locate(x.@name), x);
 			case "extend-zone":
 				return compileStoryBody(locate(x.@name), x) as ZoneStmt;
+			case "menu":
+				return compileMenu(x);
+			case "button":
+				return compileButton(x);
 			default:
 				return super.compileTag(tag, x);
 		}
@@ -119,6 +123,29 @@ public class StoryCompiler extends Compiler {
 		if ('op' in attrs) op = attrs['op'];
 		else op = '=';
 		return new SetStmt(attrs['var'],expr,op);
+	}
+	protected function compileMenu(x:XML):MenuStmt {
+		var menu:MenuStmt = new MenuStmt();
+		var attrs:* = attrMap(x);
+		if ('backfn' in attrs) menu.backfn = Eval.compile(x.@backfn);
+		else if ('back' in attrs) menu.backref = x.@back;
+		compileChildrenInto(x,menu.stmts);
+		return menu;
+	}
+	protected function compileButton(x:XML):ButtonStmt {
+		var button:ButtonStmt = new ButtonStmt();
+		var attrs:* = attrMap(x);
+		button.label = x.@label;
+		if ('call' in attrs) button.call = Eval.compile(x.@call);
+		else if ('goto' in attrs) button.goto_ref = x.@goto;
+		else if (x.elements().length()==0) throw new Error("<button> has no call, goto, or child elements!");
+		else {
+			compileChildrenInto(x,button.body);
+		}
+		if ('enableIf' in attrs) button.enableIf = Eval.compile(x.@enableIf);
+		if ('disableIf' in attrs) button.disableIf = Eval.compile(x.@disableIf);
+		if ('pos' in attrs) button.pos = parseInt(x.@pos);
+		return button;
 	}
 	protected function compileStory(x:XML, isLib:Boolean = false):Story {
 		return compileStoryBody(new Story(x.localName(),stack[0], x.@name, isLib), x);

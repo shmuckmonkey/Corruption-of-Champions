@@ -98,8 +98,8 @@ public class DivaScene extends XXCNPC{
         {
             clearOutput();
             display("camp/sexMenu/menu");
-            setupSexMenu();
-            submenu(_sexMenu,campInteraction);
+//            setupSexMenu();
+//            submenu(_sexMenu,campInteraction);
         }
         function setupTalkMenu():void{
             _talkMenu.clear();

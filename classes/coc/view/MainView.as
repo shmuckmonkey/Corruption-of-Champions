@@ -127,18 +127,18 @@ public class MainView extends Block {
 	// toprow width = statbar width + textzone width, so calculated later
 	internal static const TOPROW_W:Number = TEXTZONE_X + TEXTZONE_W;
 	// Bottom buttons
-	internal static const BOTTOM_X:Number         = STATBAR_RIGHT; // left = statbar right
-	internal static const BOTTOM_COLS:Number      = 5;
-	internal static const BOTTOM_ROWS:Number      = 3;
-	internal static const BOTTOM_BUTTON_COUNT:int = BOTTOM_COLS * BOTTOM_ROWS;
-	internal static const BOTTOM_H:Number         = (GAP + BTN_H) * BOTTOM_ROWS; // height = rows x button height
-	internal static const BOTTOM_W:Number         = TEXTZONE_W; // width = textzone width
-	internal static const BOTTOM_HGAP:Number      = (BOTTOM_W - BTN_W * BOTTOM_COLS) / (2 * BOTTOM_COLS); // between btns
-	internal static const BOTTOM_Y:Number         = SCREEN_H - BOTTOM_H; // bottom = screen bottom
-	internal static const MONSTER_X:Number        = TEXTZONE_X + MainView.TEXTZONE_W + GAP;
-	internal static const MONSTER_Y:Number        = TEXTZONE_Y;
-	internal static const MONSTER_W:Number        = SCREEN_W - MONSTER_X;
-	internal static const MONSTER_H:Number        = TEXTZONE_H;
+	public static const BOTTOM_X:Number         = STATBAR_RIGHT; // left = statbar right
+	public static const BOTTOM_COLS:Number      = 5;
+	public static const BOTTOM_ROWS:Number      = 3;
+	public static const BOTTOM_BUTTON_COUNT:int = BOTTOM_COLS * BOTTOM_ROWS;
+	public static const BOTTOM_H:Number         = (GAP + BTN_H) * BOTTOM_ROWS; // height = rows x button height
+	public static const BOTTOM_W:Number         = TEXTZONE_W; // width = textzone width
+	public static const BOTTOM_HGAP:Number      = (BOTTOM_W - BTN_W * BOTTOM_COLS) / (2 * BOTTOM_COLS); // between btns
+	public static const BOTTOM_Y:Number         = SCREEN_H - BOTTOM_H; // bottom = screen bottom
+	public static const MONSTER_X:Number        = TEXTZONE_X + MainView.TEXTZONE_W + GAP;
+	public static const MONSTER_Y:Number        = TEXTZONE_Y;
+	public static const MONSTER_W:Number        = SCREEN_W - MONSTER_X;
+	public static const MONSTER_H:Number        = TEXTZONE_H;
 
 	private var blackBackground:BitmapDataSprite;
 	public var textBGWhite:BitmapDataSprite;

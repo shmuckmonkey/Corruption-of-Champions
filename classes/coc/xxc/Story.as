@@ -43,7 +43,7 @@ public class Story extends StmtList{
 		context.debug(this,'enter');
 		super.execute(context);
 	}
-	public function bind(context:ExecContext):BoundStory {
+	public function bind(context:StoryContext):BoundStory {
 		return new BoundStory(this,context);
 	}
 	public static function locateSplit(story:Story,ref:/*String*/Array):Story {

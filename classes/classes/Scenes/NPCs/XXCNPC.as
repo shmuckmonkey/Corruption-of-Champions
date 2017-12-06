@@ -2,9 +2,9 @@ package classes.Scenes.NPCs
 {
 import classes.BaseContent;
 import classes.CoC;
-import classes.CoC;
 
 import coc.view.ButtonDataList;
+import classes.internals.Utils;
 
 import coc.xxc.BoundStory;
 
@@ -56,7 +56,7 @@ import coc.xxc.BoundStory;
 		}
 		public function display(toDisplay:String,locals:*=null):void
 		{
-			story.display(toDisplay,locals);
+			story.display(toDisplay,Utils.extend({$this:this},locals));
 		}
 		public function save(saveto:*):void{
 
@@ -90,7 +90,7 @@ import coc.xxc.BoundStory;
 		}
 		public function scene(ref:String,locals:*=null,next:Function=null):void{
 			clearOutput();
-			display(ref,locals);
+			display(ref,Utils.extend({$this:this},locals));
 			doNext(next!=null?next:camp.returnToCampUseOneHour);
 		}
     }

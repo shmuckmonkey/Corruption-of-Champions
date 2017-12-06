@@ -27,7 +27,12 @@ public class Eval {
 		try {
 			return _call();
 		} catch (e:Error){
-			error(_src,"",e.message,false);
+			throw error(_src,"",e.message,false);
+		}
+	}
+	public function bind(scopes:/*Object*/Array):Function {
+		return function():* {
+			return vcall(scopes);
 		}
 	}
 
@@ -90,6 +95,11 @@ public class Eval {
 			e._call = e.evalUntil("");
 		}
 
+		return e;
+	}
+	public static function wrapAsEval(fn:Function,src:String):Eval {
+		var e:Eval = new Eval({},src);
+		e._call = fn;
 		return e;
 	}
 	private static function error(src:String, expr:String, msg:String, tail:Boolean = true):Error {
@@ -303,6 +313,7 @@ public class Eval {
 		return function():*{ return evalId(id); };
 	}
 	private function evalDot(obj:Object,key:String):* {
+		if (obj === null || obj === undefined) throw new Error("Null before ."+key);
 		if (!(key in obj)) return undefined;
 		var y:* = obj[key];
 		if (y is Function) {

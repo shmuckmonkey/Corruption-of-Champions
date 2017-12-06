@@ -287,6 +287,12 @@
         <lib name="sexMenu">
             <text name="menu">
                 <i>“I agree and I’m in the mood for a few exchanges if they are. What thou propose?”</i>
+
+                <menu backfn="$this.campInteraction()">
+                    <button label="Moonlight Sonata" call="$this.moonlightSonata()"/>
+                    <button label="Share A Meal" goto="../shareAMeal" enableIf="player.vampireScore() ge 6 and player.faceType == AppearanceDefs.FACE_VAMPIRE"/>
+                    <button label="Bloody Rose" goto="../bloodyRose" enableIf="player.vampireScore() ge 6 and player.faceType == AppearanceDefs.FACE_VAMPIRE"/>
+                </menu>
             </text>
             <lib name="moonlightSonata">
                 <lib name="intro">
@@ -469,7 +475,7 @@
 
                 Once inside, you give Diva a seductive gaze, offering your neck on display and removing your clothes. The vampire needs no further invitation as she toss hers at the back of her tent. Diva snuggle up to you, kisses your neck and then bite in. The feeling of the blood running out of your neck is a delicious mix of pain and pleasure arousing you to no end. In the delight of the moment you also bite Diva, tasting her blood. It never occurred to you before how powerful the link between the both of you are when feeding from each others neck… were you two any closer than that you would be able to communicate through telepathy. You feel her pleasure through your neck as she can feels yours through her own.. or perhaps you both feels each other pleasure more clearly?
 
-                <if test="player.isMale">
+                <if test="player.isMale()">
                     Your [cock] begins to harden from the overstimulation of your sensible vampire neck and the excitement of blood.
                     Diva pussy seems to agree as she’s practically wetting the ground below the pair of you.
                     Giving in to your instinct you slowly insert yourself in her like your fang in her neck as your increasingly hardening [cock] begin to pulse along with your heartbeat.
@@ -481,7 +487,7 @@
                     Both of you scream in ecstasy, breaking out of the bite, blood still dripping from each other chin as you cum your load in her greedy vagina
                     <if test="player.cumQ() ge 20"> the excess dripping to the ground</if>.
 
-                    <elseif test="player.isFemale">
+                    <elseif test="player.isFemale()">
                         You begin to feel more than blood oozing out of you.
                         Your pussy lips are drooling and you can feel Diva juices slowly running down your leg.
                         You are panting from the feeling in your neck and you desire more, Diva too, so on a common nod you get to step two.

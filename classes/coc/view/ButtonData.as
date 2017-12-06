@@ -7,6 +7,7 @@ import classes.CoC;
 import classes.PerkLib;
 
 public class ButtonData {
+	public var pos:int = -1;
 	public var text:String = "";
 	public var callback:Function = null;
 	public var enabled:Boolean = false;

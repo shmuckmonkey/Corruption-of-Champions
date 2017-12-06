@@ -3,8 +3,8 @@
  */
 package coc.xlogic {
 public class ExecContext {
-	public function ExecContext(_thiz:Array) {
-		this._scopes = _thiz;
+	public function ExecContext(_scopes:Array) {
+		this._scopes = [].concat(_scopes);
 	}
 	private var _scopes:Array = [];
 	public function get scopes():Array {
@@ -35,7 +35,7 @@ public class ExecContext {
 	}
 	public function executeAll(stmts:/*Statement*/Array):void {
 		for each (var statement:Statement in stmts) {
-			statement.execute(this);
+			execute(statement);
 		}
 	}
 	public function error(where:Statement,message:String):void {
@@ -52,6 +52,9 @@ public class ExecContext {
 	 */
 	public function debug(where:Statement,s:String):void {
 		trace(''+where+' '+s);
+	}
+	public function clone():ExecContext {
+		return new ExecContext(_scopes);
 	}
 }
 }
