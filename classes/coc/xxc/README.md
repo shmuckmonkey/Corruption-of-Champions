@@ -110,20 +110,19 @@ TODO
 
 ### Display elements
 
-#### text, string, story, lib, macro
+#### &lt;text&gt;, &lt;string&gt;, &lt;story&gt;, &lt;lib&gt;, &lt;macro&gt;
 
-```relax-ng
-Text = element text { 
-    attribute name { text }?, 
-    content*
-}
+```xml
+<text name="optional_id">
+    text and logic content
+</text>
 ```
 Outputs its content, processing whitespace __in XML text during compilation__ (i.e. generated text is not processed):
 * All whitespace after opening tag is removed
 * Spaces and tabs after line break are removed (considered indents) 
 * Single line-breaks are replaced by spaces (double and multiple are preserved).
 
-This _story_ is saved in the outer text block as `name`.
+This _story_ is saved in the outer text block as `optional_id`.
 
 ##### &lt;string&gt;
 
@@ -139,70 +138,104 @@ Skipped when iterated from outer element, but can be displayed by name
 
 ##### &lt;story&gt;
 
-Same as `<text>`  
+Same as `<text>`.
 
-#### display
+#### &lt;display&gt;
 
-```relax-ng
-display = element display {
-    attribute ref { text }
-}
+```xml
+<display ref="path"/>
 ```
 Locates story (absolutely or relatively) and executes (displays) it.
 
-#### output
+#### &lt;output&gt;
 
-TODO
+```xml
+<output>code</output>
+```
+Executes the `code` and prints the result.
 
-#### zone, encounter
+Note that the parser tags are handled separately in every text chunk: 
+```xml
+<text>
+    [cock <output>$x</output>] <!-- won't work: "[cock ", $x, "]" would be parsed separately -->  
+    <output>'[cock '+$x+']'</output>
+</text>
+``` 
+
+#### &lt;zone&gt;, &lt;encounter&gt;
 
 TODO
 
 ### Action elements
 
-#### set
+#### &lt;set&gt;
 
-TODO
-
-#### dynStats
-
-TODO
-
-#### menu
-
-```relax-ng
-menu = element menu {
-    (content|button)*
-}
-button = element button {
-    attribute label { text },
-    (attribute call { text } | attribute goto { text } | content*),
-    (attribute disableIf { text } | attribute enableIf { text }),
-    attribute pos { text }?
-}
+```xml
+<set var="varname" value="code"/>
 ```
+Executes `code` and stores it as a local variable `varname`.
+By convention, their name should start with `$`.
+
+Optional attribute `op` can be used to perform the assign-with-operator:
+* `op="set"`, `op="="` (default): `var varname=code`
+* `op="append"`, `op="add"`, `op="+="`: `var varname+=code` 
+
+#### &lt;dynStats&gt;
+
+TODO
+
+#### &lt;menu&gt;
+
+`<menu>`:
+* (optional) `backfn="code"` - add `[Back]` button, executing the code.
+* (optional) `back="ref"` - add `[Back]` button, transitioning to scene.
+
+`<button>`: (should be inside `<menu>`):
+* `label="Button Label"`
+* (optional) `pos="index 0-14"`. Ignored for long menus.
+* (optional) `enableIf="code"`. If the `code` evaluates to `false`, button is disabled.
+* (optional) `disableIf="code"`. If the `code` evaluates to `true`, button is disabled. Takes priority over `enableIf`
+* Click action -- either
+  - `call="code"`
+  - `goto="ref"`
+  - Non-empty tag body
+
+##### Example
+```xml
+<menu backfn="$this.campInteraction()">
+    <button label="Moonlight Sonata" call="$this.moonlightSonata()"/>
+    <button label="Share A Meal" goto="../shareAMeal" enableIf="player.vampireScore() ge 6 and player.faceType == AppearanceDefs.FACE_VAMPIRE"/>
+    <button label="Bloody Rose" enableIf="player.vampireScore() ge 6 and player.faceType == AppearanceDefs.FACE_VAMPIRE">
+        You point out to Diva tent and both of you head in.
+        
+        ...
+    </button>
+</menu>
+```
+
+#### &lt;next&gt;
 
 ### Structure elements
 
-#### story
+#### &lt;story&gt;
 
 TODO
 
-#### include
+#### &lt;include&gt;
 
 TODO
 
-#### extend-story
+#### &lt;extend-story&gt;
 
 TODO
 
-#### extend-zone
+#### &lt;extend-zone&gt;
 
 TODO
 
 ### Logic elements
 
-#### if-elseif-else
+#### &lt;if&gt;/&lt;elseif&gt;/&lt;else&gt;
 
 ```xml
 <if test="condition" then="thenString" else="elseString">
@@ -219,57 +252,34 @@ TODO
 * `else="""`, `<elseif>`, and `<else>` are optional and only one of them should be present;
 * `<elseif>` has same structure as `<if>`.
 
-#### switch-case-default
+#### &lt;switch&gt;/&lt;case&gt;/&lt;default&gt;
 
 ##### Valueless:
-```relax-ng
-witch = element switch {
-    case*,
-    Default?
-}
-case = element case {
-    attribute test { expression }?,
-    content*
-}
-Default = element default {
-    content*
-}
+```xml
+<switch>
+    <case test="code1">then1</case>
+    <case test="code1">then2</case>
+    <default>else</default> <!--optional-->
+</switch>
 ```
 Equivalent to a `if-elseif*-else?` chain
 
 ##### With value
 
-Attribute `value` is calculated once and used in checks
-```relax-ng
-switch = element switch {
-    attribute value { expression }?,
-    case*,
-    Default?
-}
-case = element case {
-    attribute test { expression }?,
-    attribute value { expression }?,
-    attribute values { array-content-expression }?,
-    attribute lt { expression }?,
-    attribute gt { expression }?,
-    attribute ne { expression }?,
-    attribute lte { expression }?,
-    attribute gte { expression }?,
-    content*
-}
-Default = element default {
-    content*
-}
+Switch attribute `value` is calculated once and used in checks.
+```xml
+<switch value="test_value">
+    <case value="expr"><!-- if test_value == expr --></case>
+    <case values="expr1,expr2,exprN"><!-- if test_value is any of [expr1,expr2,exprN] --></case>
+    <case lt="expr"><!-- if test_value &lt; expr--></case>
+    <case lte="expr"><!-- if test_value &lt;= expr--></case>
+    <case gt="expr"><!-- if test_value &gt; expr--></case>
+    <case gte="expr"><!-- if test_value &gt;= expr--></case>
+    <case ne="expr"><!-- if test_value != expr--></case>
+    <case test="expr"><!-- if expr --> </case>
+    <default><!--optional else branch--></default>
+</switch>
 ```
-
-The following checks are performed (if present)
-* `switch@value == case@value` 
-* `[ case@values ]` contains `switch@value`
-* `switch@value < case@lt` 
-* `switch@value <= case@lte` 
-* `switch@value > case@gt` 
-* `switch@value >= case@gte` 
-* `switch@value != case@value` 
 
 If multiple value-checks are present, they are combined with AND (so `lt` and `gt` mean "between").
 If the `test` attribute is present, it is combined with OR (if you need AND, move it to inner `<if>`)
@@ -294,11 +304,13 @@ Supported:
 
 **NOT** supported:
 1. (might be added) Object literals.
-1. (some might be added) `is`, `instanceof`, `as`, `|`, `&`, `^`, unary `+` `-` `~`
+1. (some might be added) `is`, `instanceof`, `as`, `|`, `&`, `^`, unary `+` `-` `~` `!` (for `not x` check you have to compare `x ne false` or `x eq true`)
 1. L-values (and all asignment operators).
 2. Control structures (basically everything that isn't a statement)
-4. Accessing global variables, class names etc. 
-
-Predefined identifiers: `Math` class, functions `int`, `uint`, `String`, `string` and `Number`, and constants `undefined`, `null`, `true`, `false`
+4. Builtins and globals except:
+  * `Math` class, 
+  * functions `int`, `uint`, `String`, `string` and `Number`,
+  * constants `undefined`, `null`, `true`, `false`,
+  * everything that is defined in `StoryContext` class.
 
 TODO
