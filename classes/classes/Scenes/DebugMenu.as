@@ -1,4 +1,4 @@
-package classes.Scenes 
+package classes.Scenes
 {
 import classes.*;
 import classes.BodyParts.Skin;
@@ -10,7 +10,13 @@ import classes.Items.ConsumableLib;
 import classes.Parser.Parser;
 import classes.Scenes.NPCs.JojoScene;
 
+import coc.view.ButtonData;
+
+import coc.view.ButtonDataList;
+
 import coc.view.Color;
+import coc.xlogic.Statement;
+import coc.xxc.Story;
 
 import flash.utils.describeType;
 
@@ -37,8 +43,8 @@ public class DebugMenu extends BaseContent
 		public var testArray:Array = [];
 		
 		
-		public function DebugMenu() 
-		{	
+		public function DebugMenu()
+		{
 		}
 		
 		public function accessDebugMenu():void {
@@ -63,6 +69,7 @@ public class DebugMenu extends BaseContent
 				if (player.isPregnant()) addButton(4, "Abort Preg", abortPregnancy);
 				addButton(5, "DumpEffects", dumpEffectsMenu).hint("Display your status effects");
 				addButton(7, "HACK STUFFZ", styleHackMenu).hint("H4X0RZ");
+				addButton(10, "Story Explorer", storyExplorer).hint("XXC Story explorer");
 				addButton(14, "Exit", playerMenu);
 			}
             if (CoC.instance.inCombat) {
@@ -354,11 +361,11 @@ public class DebugMenu extends BaseContent
 			weaponArray.push(weapons.L_STAFF);
 			weaponArray.push(weapons.MACE);
 			weaponArray.push(weapons.PIPE);
-			weaponArray.push(weapons.PTCHFRK);			
+			weaponArray.push(weapons.PTCHFRK);
 			weaponArray.push(weapons.RIDINGC);
 			weaponArray.push(weapons.RRAPIER);
 			weaponArray.push(weapons.S_BLADE);
-			weaponArray.push(weapons.S_GAUNT);			
+			weaponArray.push(weapons.S_GAUNT);
 			weaponArray.push(weapons.SCARBLD);
 			weaponArray.push(weapons.SCIMITR);
 			weaponArray.push(weapons.SPEAR);
@@ -1650,7 +1657,7 @@ public class DebugMenu extends BaseContent
 		{
 			lightsArray[slot] = !lightsArray[slot];
 			
-			if (lightsArray[slot]) 
+			if (lightsArray[slot])
 			{
 				//userInterface.setButtonPurple(slot);
 				mainView.setButtonText(slot, "XXXXXXXX");
@@ -1695,6 +1702,41 @@ public class DebugMenu extends BaseContent
 			if (pX < 4) toggleSlot(slot + 1);
 			if (pY > 0) toggleSlot(slot - 5);
 			if (pY < 2) toggleSlot(slot + 5);
+		}
+		public function storyExplorer(story:Story=null,execute:Boolean=false):void {
+			if (!story) story = CoC.instance.rootStory;
+			clearOutput();
+			outputText("You are inspecting <font face=\"_typewriter\">" + story.path + "</font>.\n");
+			var buttons:ButtonDataList = new ButtonDataList();
+			if (!story.isLib) {
+				buttons.add("(Execute)",curry(storyExplorer,story,true),"Display/execute the story");
+			}
+			if (story.parent) {
+				buttons.add("..",curry(storyExplorer,story.parent),"Go 1 level up to "+story.parent.path);
+			}
+			var sss:String = "";
+			for (var key:String in story.lib) {
+				var substory:Story = story.lib[key] as Story;
+				if (!substory) continue;
+				buttons.add(substory.name,curry(storyExplorer,substory),"Explore "+substory.path);
+				sss += "<li><font face=\"_typewriter\">" +
+					   "./"+(substory.name ? substory.name : "(unnamed " + substory.tagname + ")")+
+					   "</font></li>";
+			}
+			if (sss) outputText("Substories:\n<ul>"+sss+"</ul>");
+			
+			if (execute) {
+				try {
+					story.execute(context);
+					flushOutputTextToGUI();
+					return;
+				} catch (e:Error) {
+					trace(e);
+					outputText("Error: "+e.message);
+				}
+			}
+			
+			submenu(buttons,accessDebugMenu);
 		}
 	}
 

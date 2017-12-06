@@ -12,6 +12,12 @@ public class Story extends StmtList{
 	public var isLib:Boolean;
 	public var tagname:String;
 
+	public function get path():String {
+		if (!parent) return "/";
+		if (!name) return "(unnamed "+tagname+" under "+parent.path+")";
+		if (parent.parent) return parent.path + "/" + name;
+		return "/" + name;
+	}
 	public function toString():String {
 		return '<'+tagname+' name="'+name+'" isLib='+isLib+'"> ['+stmts.length+'] </'+tagname+'>';
 	}
