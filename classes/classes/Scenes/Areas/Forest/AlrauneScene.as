@@ -32,6 +32,10 @@ public class AlrauneScene extends BaseContent
 			outputText("\"<i>Mmmmmm such a nice catch... Come closer into my pitcher.</i>\"\n\n");
 			outputText("There's no way you will let this thing pull you in!\n\n");
 		}
+		if (flags[kFLAGS.CODEX_ENTRY_ALRAUNE] <= 0) {
+			flags[kFLAGS.CODEX_ENTRY_ALRAUNE] = 1;
+			outputText("\n\n<b>New codex entry unlocked: Alraune!</b>");
+		}
 		startCombat(new Alraune());
 	}
 	
@@ -121,10 +125,8 @@ public class AlrauneScene extends BaseContent
 			outputText("When you wake up you are in a different area with your gear packed up next to you. Seems some thief made off with a small amount of your gems though.\n\n");
 			if (player.goblinScore() > 9) player.knockUp(PregnancyStore.PREGNANCY_GOBLIN, PregnancyStore.INCUBATION_GOBLIN);
             else player.knockUp(PregnancyStore.PREGNANCY_ALRAUNE, PregnancyStore.INCUBATION_ALRAUNE);
-			if (player.isGargoyle() && player.hasPerk(PerkLib.GargoyleCorrupted)) player.refillGargoyleHunger(30);
-			if (player.jiangshiScore() >= 20 && player.statusEffectv1(StatusEffects.EnergyDependent) < 45) player.EnergyDependentRestore();
 		}
-		player.orgasm();
+		player.sexReward("cum");
 		dynStats("lib", 15, "sen", 5);
 		cleanupAfterCombat();
 	}

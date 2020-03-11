@@ -51,7 +51,8 @@ import mx.logging.targets.TraceTarget;
     // Add in descriptions for the include statements. Many of the description text code is inside of these.
     // Suggest moving or removing old comments referencing things that aren't needed anymore.
 
-[SWF( width="1420", height="800", pageTitle="Corruption of Champions" )]
+//[SWF( width="1420", height="800", pageTitle="Corruption of Champions" )]
+[SWF( width="1440", height="3120", pageTitle="Corruption of Champions" )]
 
 public class CoC extends MovieClip
 {
@@ -253,8 +254,8 @@ public class CoC extends MovieClip
         //model.debug = debug; // TODO: Set on model?
 
 			//Version NUMBER
-			ver = "1.0.2_mod_Xianxia_0.8n7";
-			version = ver + " (<b>Larger Inventory, Yuki Onna encounter, Bloodlines, minor bugfixes</b>)";
+			ver = "1.0.2_mod_Xianxia_0.8n8";
+			version = ver + " (<b></b>)";
 
         this.images = new ImageManager(stage, mainView);
         this.inputManager = new InputManager(stage, mainView, false);

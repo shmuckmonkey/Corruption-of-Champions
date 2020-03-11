@@ -158,11 +158,16 @@ public class MainView extends Block {
 	public static const GAP:Number   = 4; // Gap between UI panels
 	public static const HALFGAP:Number = GAP/2;
 	internal static const BTN_W:Number = 150; // Button size
-	internal static const BTN_H:Number = 40;
-
-	internal static const SCREEN_W:Number       = 1420;
-	internal static const SCREEN_H:Number       = 800;
-
+	//internal static const BTN_H:Number = 40;
+	internal static const BTN_H:Number = 200;
+	
+	//internal static const SCREEN_W:Number       = 1420;
+	//internal static const SCREEN_H:Number       = 800;
+	internal static const SCREEN_W:Number       = 1440;
+	internal static const SCREEN_H:Number       = 3120;
+	//1440
+	//3120
+	
 	// TOPROW: [Main Menu]/[New Game], [Data] ... [Appearance]
 	
 	// Columns:
@@ -199,7 +204,8 @@ public class MainView extends Block {
 	internal static const COLUMN_3_W:Number      = COLUMN_3_RIGHT - COLUMN_3_X;
 	// Top row. Its width depends on textzone size and declared later
 	internal static const TOPROW_X:Number        = COLUMN_1_X;
-	internal static const TOPROW_Y:Number        = HALFGAP;
+	internal static const TOPROW_Y:Number        = 0;
+	//internal static const TOPROW_Y:Number        = HALFGAP;
 	internal static const TOPROW_H:Number        = BTN_H;
 	internal static const TOPROW_BOTTOM:Number   = TOPROW_Y + TOPROW_H + GAP;
 	// Stat bar and its columns. Height depends on charview size
@@ -285,9 +291,13 @@ public class MainView extends Block {
 		addElement(blackBackground = new BitmapDataSprite({
 			bitmapClass: ButtonBackground2,
 			x          : -SCREEN_W / 2,
+			//x          : 0,
 			width      : SCREEN_W * 2,
 			height     : SCREEN_H * 2,
+			//width      : SCREEN_W,
+			//height     : SCREEN_H,
 			y          : -SCREEN_H / 2,
+			//y          : 0,
 			fillColor  : '#000000'
 		}), {});
 		addElement(background = new BitmapDataSprite({
@@ -378,6 +388,7 @@ public class MainView extends Block {
 			height: mainText.height,
 			width: VSCROLLBAR_W
 		});
+		//scrollBar.scaleX = 2;
 		addElement(scrollBar);
 		nameBox        = addTextField({
 			border      : true,
