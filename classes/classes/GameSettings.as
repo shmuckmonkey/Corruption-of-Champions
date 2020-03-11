@@ -753,9 +753,9 @@ public class GameSettings extends BaseContent {
 
 		if (fmt.size == null) fmt.size = 20;
 
-		fmt.size = (fmt.size as Number) + 1;
+		fmt.size = (fmt.size as Number) + 2;
 
-		if ((fmt.size as Number) > 32) fmt.size = 32;
+		if ((fmt.size as Number) > 64) fmt.size = 64;
 
 		trace("Font size set to: " + (fmt.size as Number));
 		mainView.mainText.setTextFormat(fmt);

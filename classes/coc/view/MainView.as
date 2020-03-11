@@ -194,9 +194,9 @@ public class MainView extends Block {
 	internal static const COLUMN_1_W:Number      = Math.max(STATBAR_W, CHARVIEW_W);
 	internal static const COLUMN_1_RIGHT:Number  = COLUMN_1_X + COLUMN_1_W;
 	// Column 2 core
-	internal static const TEXTZONE_W:Number      = 770;
+	internal static const TEXTZONE_W:Number      = 1400;
 	internal static const COLUMN_2_X:Number      = COLUMN_1_RIGHT + GAP;
-	internal static const COLUMN_2_W:Number      = TEXTZONE_W;
+	internal static const COLUMN_2_W:Number      = TEXTZONE_W / 3; 
 	internal static const COLUMN_2_RIGHT:Number  = COLUMN_2_X + COLUMN_2_W;
 	// Column 3 core
 	internal static const COLUMN_3_X:Number      = COLUMN_2_RIGHT + GAP;
@@ -221,34 +221,35 @@ public class MainView extends Block {
 	internal static const CHARVIEW_H:Number      = 202*2;
 	internal static const CHARVIEW_BOTTOM:Number = SCREEN_H;
 	// Text zone
-	internal static const TEXTZONE_X:Number      = STATBAR_RIGHT;
-	internal static const TEXTZONE_Y:Number      = TOPROW_BOTTOM + GAP;
-	internal static const TEXTZONE_RIGHT:Number  = TEXTZONE_X + TEXTZONE_W + GAP;
+	internal static const TEXTZONE_X:Number      = (SCREEN_W - TEXTZONE_W) / 2;
+	internal static const TEXTZONE_RIGHT:Number  = (TEXTZONE_X * 2) + TEXTZONE_W;
 	// Bottom menu
-	internal static const BOTTOM_X:Number        = STATBAR_RIGHT + HALFGAP;
+	internal static const BOTTOM_X:Number        = STATBAR_COL_W * 2;
 	internal static const BOTTOM_H:Number        = (GAP + BTN_H) * BOTTOM_ROWS; // height = rows x button height
-	internal static const BOTTOM_W:Number        = TEXTZONE_W; // width = textzone width
-	internal static const BOTTOM_HGAP:Number     = (BOTTOM_W - BTN_W * BOTTOM_COLS) / (2 * BOTTOM_COLS); // between btns
 	internal static const BOTTOM_Y:Number        = SCREEN_H - BOTTOM_H; // bottom = screen bottom
 	// Sprite (top right)
-	internal static const SPRITE_X:Number           = COLUMN_3_X;
-	internal static const SPRITE_Y:Number           = TEXTZONE_Y;
-	internal static const SPRITE_MAX_W:Number       = SCREEN_W - SPRITE_X - GAP;
-	internal static const SPRITE_MAX_H:Number       = SPRITE_MAX_W;
+	internal static const SPRITE_X:Number           = COLUMN_2_X;
+	internal static const SPRITE_Y:Number           = STATBAR_Y;
+	internal static const SPRITE_MAX_W:Number       = STATBAR_W;
+	internal static const SPRITE_MAX_H:Number       = STATBAR_W;
 	// monster stats (top right below sprite)
-	internal static const MONSTER_X:Number          = COLUMN_3_X;
-	internal static const MONSTER_W:Number          = SPRITE_MAX_W;
+	internal static const MONSTER_X:Number          = COLUMN_2_X + SPRITE_MAX_W;
+	internal static const MONSTER_W:Number          = SCREEN_W - (MONSTER_X + GAP);
 	internal static const MONSTER_H:Number          = 300;
-	internal static const MONSTER_Y:Number          = SPRITE_Y + SPRITE_MAX_H + GAP;
-	// corner stats (bottom right)
-	internal static const CORNERSTATS_X:Number      = COLUMN_3_X;
-	internal static const CORNERSTATS_W:Number      = COLUMN_3_W;
-	internal static const CORNERSTATS_BOTTOM:Number = SCREEN_H - HALFGAP;
+	internal static const MONSTER_Y:Number          = STATBAR_Y;
 	// Various dependencies
 	internal static const TEXTZONE_H:Number         = SCREEN_H - TEXTZONE_Y - BOTTOM_H - 2 * GAP;
-	internal static const TOPROW_W:Number           = TEXTZONE_X + TEXTZONE_W;
+	internal static const TOPROW_W:Number           = TEXTZONE_W;
 	internal static const STATBAR_BOTTOM:Number     = CHARVIEW_BOTTOM - CHARVIEW_H - GAP;
-	internal static const STATBAR_H:Number          = STATBAR_BOTTOM - STATBAR_Y;
+	//internal static const STATBAR_H:Number          = STATBAR_BOTTOM - STATBAR_Y;
+	internal static const STATBAR_H:Number          = MONSTER_H;
+	internal static const TEXTZONE_Y:Number      	= TOPROW_BOTTOM + (GAP * 2) + STATBAR_H;
+	internal static const BOTTOM_W:Number        = SCREEN_W - (STATBAR_W  + CORNERSTATS_W) //TEXTZONE_W; // width = textzone width
+	internal static const BOTTOM_HGAP:Number     = (BOTTOM_W - BTN_W * BOTTOM_COLS) / (2 * BOTTOM_COLS); // between btns
+	// corner stats (bottom right)
+	internal static const CORNERSTATS_X:Number      = BOTTOM_X + BOTTOM_W;
+	internal static const CORNERSTATS_W:Number      = STATBAR_COL_W;
+	internal static const CORNERSTATS_BOTTOM:Number = SCREEN_H - HALFGAP;
 
 	private var blackBackground:BitmapDataSprite;
 	public var textBGWhite:BitmapDataSprite;

@@ -53,8 +53,9 @@ public class CoCButton extends Block {
 		_labelField        = addTextField({
 			width            : MainView.BTN_W,
 			embedFonts       : true,
-			y                : MainView.BTN_H/2 - 16,
+			y                : MainView.BTN_H/4,
 			height           : MainView.BTN_H - 8,
+			wordWrap		 : true,
 			defaultTextFormat: {
 				font : ButtonLabelFontName,
 				size : 26,

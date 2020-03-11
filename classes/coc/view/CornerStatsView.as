@@ -60,7 +60,7 @@ public class CornerStatsView extends Block {
 	
 	override public function doLayout():void {
 		super.doLayout();
-		this.y = MainView.CORNERSTATS_BOTTOM - this.height;
+		this.y = MainView.BOTTOM_Y//MainView.CORNERSTATS_BOTTOM - this.height;
 		bg.height = this.height;
 	}
 }
